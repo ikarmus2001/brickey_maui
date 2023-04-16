@@ -18,7 +18,9 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+		builder.Services.AddTransient<SetupRebrickablePage>();
+        //builder.Services.AddTransient<SetupRebrickableViewModel>();
 
-		return builder.Build();
+        return builder.Build();
 	}
 }

@@ -3,7 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="brickey_maui.MainPage">
 
-    <ScrollView>
+    <Grid RowDefinitions="2*, 3*, Auto"
+          ColumnDefinitions=".75*, .25*">
+
+        <Image Grid.ColumnSpan="2" Source="dotnet_bot.png" />
+        <Button
+                Grid.Column="0"
+                Grid.Row="3"
+                x:Name="NavigationBtn"
+                Text="ChangeNavigation"
+                Clicked="ChangePage"
+                HorizontalOptions="Center" />
+        <Button
+                Grid.Column="1"
+                Grid.Row="3"
+                x:Name="CounterBtn"
+                Text="Click me"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+        
+    </Grid>
+    
+    <!--<ScrollView>
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
@@ -28,14 +50,9 @@
                 FontSize="18"
                 HorizontalOptions="Center" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+            
 
         </VerticalStackLayout>
-    </ScrollView>
+    </ScrollView>-->
 
 </ContentPage>
