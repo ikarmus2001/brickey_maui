@@ -14,6 +14,7 @@ public partial class MainPage : ContentPage
 
 	private async void OnCounterClicked(object sender, EventArgs e)
 	{
+        await Shell.Current.GoToAsync(nameof(QueryPage));
         try
         {
             Uri uri = new Uri("https://www.rebrickable.com");

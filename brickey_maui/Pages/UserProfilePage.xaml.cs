@@ -12,8 +12,6 @@ public partial class UserProfilePage : ContentPage
 		InitializeComponent();
 	}
 
-
-
     private async void OnLoaded(object sender, EventArgs args)
     {
         await RetrieveUserData();
@@ -27,8 +25,8 @@ public partial class UserProfilePage : ContentPage
 
     private void FillView()
     {
-		usernameLbl.Text = userProfile.Username;
-		userIdLbl.Text = userProfile.UserID.ToString();
-		emailLbl.Text = userProfile.Email;
+		usernameLbl.Text = userProfile.username;
+		userIdLbl.Text = userProfile.user_id.ToString();
+		emailLbl.Text = userProfile.email;
     }
 }

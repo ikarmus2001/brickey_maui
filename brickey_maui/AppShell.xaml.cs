@@ -10,5 +10,6 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute(nameof(SetupRebrickablePage), typeof(SetupRebrickablePage));
         Routing.RegisterRoute(nameof(UserProfilePage), typeof(UserProfilePage));
+        Routing.RegisterRoute(nameof(QueryPage), typeof(QueryPage));
     }
 }

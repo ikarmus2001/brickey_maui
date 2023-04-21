@@ -1,5 +1,6 @@
 ﻿using BrickeyCore.RebrickableModel;
 using RebrickableSharp.Client;
+ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 
@@ -10,8 +11,12 @@ namespace BrickeyCore
         public static bool isConnected = false;
         private static IRebrickableClient? rebrickableClient;
 
+        private static string baseApiUrl = "https://rebrickable.com/api/v3/";
+        private static string apiKey = "";
+
         public static void Setup(string apiKey)
         {
+            RebrickableApiWrapper.apiKey = apiKey;
             RebrickableClientConfiguration.Instance.ApiKey = apiKey;
             rebrickableClient = RebrickableClientFactory.Build();
             isConnected = true;
@@ -19,8 +24,8 @@ namespace BrickeyCore
 
         public static async Task<UserProfile> GetUserProfile()
         {
-            Stream json = await RetrieveUserProfile();
-            return JsonSerializer.Deserialize<UserProfile>(utf8Json: json);
+            string json = await RetrieveUserProfile();
+            return JsonSerializer.Deserialize<UserProfile>(json);
 
         }
 
@@ -28,7 +33,8 @@ namespace BrickeyCore
         /// Method is not present in RebrickableSharp, requires by hand implementation
         /// </summary>
         /// <returns></returns>
-        private static async Task<Stream> RetrieveUserProfile()
+        
+        private static async Task<string> RetrieveUserProfile()
         {
             var x = @"{
   ""user_id"": 851367,
@@ -55,7 +61,17 @@ namespace BrickeyCore
   ""avatar_img"": null
 }";
 
-            return new MemoryStream(Encoding.UTF8.GetBytes(x));
+            HttpClient httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri(baseApiUrl)
+            };
+
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("key", apiKey);
+            var userRequest = $"/users/_token/";
+            httpClient.GetAsync(userRequest);
+            
+
+            return x;
         }
         
         // TODO
