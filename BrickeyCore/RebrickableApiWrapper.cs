@@ -5,11 +5,12 @@ namespace BrickeyCore
 {
     public abstract class RebrickableApiWrapper
     {
-        private static string baseApiUrl = "https://rebrickable.com/api/v3/";
-        private static string apiKey;
-        private static HttpClient _httpClient;
+        internal static string baseApiUrl = "https://rebrickable.com/api/v3/";
+        internal static HttpClient _httpClient;
+        internal static string apiKey;
+        internal static string userToken;
 
-        public static void Setup(string apiKey)
+        public static async Task<bool> Setup(string apiKey, string username, string password)
         {
             RebrickableApiWrapper.apiKey = apiKey;
 
@@ -18,13 +19,16 @@ namespace BrickeyCore
                 BaseAddress = new Uri(baseApiUrl)
             };
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("key", apiKey);
-            // TODO check connection?
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            userToken = await ManualApiCalls.GetUserToken(username, password);
+            return true;
         }
 
         public static async Task<UserProfile> GetUserProfile()
         {
-            UserProfile? up = await ManualApiCalls.GetUserProfile(_httpClient);
-            return up == null ? throw new Exception() : up;
+            UserProfile? up = await ManualApiCalls.GetUserProfile();
+            return up ?? throw new Exception();
         }
     }
 }
