@@ -5,8 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace brickey_maui.ViewModel
 {
-    // [QueryProperty("QueryModel", "QueryModel")]
-    public partial class QueryPageViewModel : ObservableObject //, IQueryAttributable
+    public partial class QueryPageViewModel : ObservableObject, IQueryAttributable
     {
 
         [ObservableProperty]
@@ -21,29 +20,20 @@ namespace brickey_maui.ViewModel
         [ObservableProperty]
         string descriptionText;
 
-        public QueryPageViewModel() { }
-
-        public QueryPageViewModel(QueryModel qm) 
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
+            var qm = (QueryModel)query[nameof(QueryModel)];
+
             MainImageCarousel = new ObservableCollection<Image>(qm.MainImages);
             QueryTitleText = qm.Title;
             DescriptionText = qm.Description;
             StatsCollection = new ObservableCollection<string>(qm.Statistics);
         }
 
-        //public void ApplyQueryAttributes(IDictionary<string, object> query)
-        //{
-        //    var x = (QueryModel)query["QueryModel"];
-        //    MainImageCarousel = new ObservableCollection<Image>(x.MainImages);
-        //    QueryTitleText = x.Title;
-        //    DescriptionText = x.Description;
-        //    StatsCollection = new ObservableCollection<string>(x.Statistics);
-        //}
-
         [RelayCommand]
         void ChangeTitle(string title)
         {
-            queryTitleText = title.Trim();
+            //queryTitleText = title.Trim();
         }
     }
 }

@@ -1,57 +1,33 @@
-﻿using brickey_maui.Models;
-using brickey_maui.Pages;
-using brickey_maui.ViewModel;
-using BrickeyCore;
+﻿using viewModel = brickey_maui.ViewModel.MainPageViewModel;
 
-namespace brickey_maui;
+namespace brickey_maui.Pages;
+
 
 public partial class MainPage : ContentPage
 {
-	//int count = 0;
-
-	public MainPage()
-	{
-		InitializeComponent();
-	}
-
-	private async void OnCounterClicked(object sender, EventArgs e)
-	{
-        var x = new QueryModel()
-        {
-            Title = "cokolwiek",
-            Description = "Przykładowy opis",
-            Statistics = new List<string>()
-            {
-                "stat1", "stat2"
-            },
-            MainImages = new List<Image>() { }
-        };
-        var y = new QueryPageViewModel(x);
-
-        var z = new QueryPage(y);
-
-        await Navigation.PushAsync(z);
-        try
-        {
-            //Uri uri = new Uri("https://www.rebrickable.com");
-            //await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-        }
-        catch (Exception ex)
-        {
-            // An unexpected error occurred. No browser may be installed on the device.
-        }
-
+    public MainPage()
+    {
+        InitializeComponent();
     }
 
-    private async void ShowUserProfileClicked(object sender, EventArgs e)
+    private async void ContentPage_Loaded(object sender, EventArgs e)
     {
-        //await Shell.Current.GoToAsync(nameof(SetupRebrickablePage));
-        OpenUserProfilePage();
+        await viewModel.MainPageVM_Loaded();
     }
 
-    private async void OpenUserProfilePage()
+    private async void MyProfileBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(UserProfilePage));
+        await viewModel.MyProfileBtn_Clicked();
+    }
+
+    private async void CollectionBtn_Clicked(object sender, EventArgs e)
+    {
+        await viewModel.CollectionBtn_Clicked();
+    }
+
+    private async void SearchHistoryBtn_Clicked(object sender, EventArgs e)
+    {
+        await viewModel.SearchHistoryBtn_Clicked();
     }
 }
 

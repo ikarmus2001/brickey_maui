@@ -1,8 +1,4 @@
-﻿using System.Runtime.Serialization;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-namespace BrickeyCore.RebrickableModel
+﻿namespace BrickeyCore.RebrickableModel
 {
     public class UserProfile
     {

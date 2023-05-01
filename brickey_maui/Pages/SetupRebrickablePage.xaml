@@ -5,8 +5,31 @@
              Title="SetupRebrickablePage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI! You just changed the page!"
+            Text="To begin using app you have to be registered on Rebrickable and generate API Key"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Button x:Name="GoToSiteBtn"
+                Text="Rebrickable API Key"
+                Clicked="GoToSiteBtn_Clicked"/>
+
+        <Entry 
+            x:Name="ApiKeyEntry"
+            Placeholder="API Key"/>
+        
+        <Entry 
+            x:Name="UsernameEntry"
+            Placeholder="Username"/>
+
+        <Entry 
+            x:Name="PasswordEntry" 
+           Placeholder="Password"
+           IsPassword="True"/>
+
+        <Button 
+            x:Name="SaveBtn"
+            Text="Save"
+            Clicked="SaveBtn_Clicked"/>
+
     </VerticalStackLayout>
 </ContentPage>

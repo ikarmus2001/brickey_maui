@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace brickey_maui;
 
@@ -9,7 +10,8 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .UseMauiCommunityToolkit()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
@@ -18,7 +20,14 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-		builder.Services.AddSingleton<MainPage>();
+		//builder.Services.AddSingleton<MainPage>();
         return builder.Build();
 	}
+
+	public static void SaveUserLoginData(string username, string password, string apiKey)
+	{
+		SecureStorage.Default.SetAsync(nameof(AppStoredDataModel.username), username);
+        SecureStorage.Default.SetAsync(nameof(AppStoredDataModel.password), password);
+        SecureStorage.Default.SetAsync(nameof(AppStoredDataModel.apiKey), apiKey);
+    }
 }

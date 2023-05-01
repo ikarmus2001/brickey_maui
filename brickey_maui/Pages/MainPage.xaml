@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="brickey_maui.Pages.MainPage"
              xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel"
+             x:Class="brickey_maui.Pages.MainPage"
              x:DataType="viewmodel:MainPageViewModel"
->
+             Title="MainPage"
+             Loaded="ContentPage_Loaded">
 
-    <Grid RowDefinitions="*, 3*, 3*, 3*"
+        <Grid RowDefinitions="*, 3*, 3*, 3*"
           ColumnDefinitions=".75*, .25*">
 
         <Image Grid.ColumnSpan="2" Grid.Row="0" 
@@ -17,17 +18,17 @@
         <Button
                 Grid.Column="0"
                 Grid.Row="2"
-                x:Name="ShowUserProfileBtn"
+                x:Name="MyProfileBtn"
                 Text="My profile"
-                Clicked="ShowUserProfileClicked"
+                Clicked="MyProfileBtn_Clicked"
                 HorizontalOptions="Center" />
         <Button
                 Grid.Column="1"
                 Grid.Row="2"
                 x:Name="CollectionBtn"
                 Text="Collection"
+                Clicked="CollectionBtn_Clicked"
                 SemanticProperties.Hint="SemanticHint"
-                Clicked="OnCollectionClicked"
                 HorizontalOptions="Center" />
 
         <Button
@@ -35,7 +36,7 @@
                 Grid.Row="3"
                 x:Name="SearchHistoryBtn"
                 Text="Search history"
-                Clicked="OnSearchHistoryClicked"
+                Clicked="SearchHistoryBtn_Clicked"
                 HorizontalOptions="Center" />
         <Button
                 Grid.Column="1"
@@ -43,7 +44,6 @@
                 x:Name="PlaceholderBtn"
                 Text="Placeholder"
                 HorizontalOptions="Center" />
-
     </Grid>
     
     <!--<ScrollView>
