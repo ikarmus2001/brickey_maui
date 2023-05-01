@@ -2,18 +2,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="brickey_maui.Pages.UserProfilePage"
+             xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel"
+             x:DataType="viewmodel:UserProfileViewModel"
              Title="UserProfilePage"
              Loaded="OnLoaded">
-    <Grid>
-        <Label x:Name="usernameLbl"
-            Text="Your username"
+    
+    <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, 2*">
+
+        <Image x:Name="ProfilePictureBox" 
+               Source="{Binding ProfilePicture}"/>
+
+        <Label Grid.Row="0" x:Name="usernameLbl"
+            Text="{Binding Username}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Label x:Name="userIdLbl"
-               Text="000000000" />
-        <Label x:Name="emailLbl"
-               Text="sample@email.com"/>
         
-
+        <Label Grid.Row="1"
+               x:Name="userIdLbl"
+               Text="{Binding UserId}" 
+               VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
+        
+        <Label Grid.Row="2" x:Name="emailLbl"
+               Text="{Binding Email}"
+               VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
     </Grid>
 </ContentPage>

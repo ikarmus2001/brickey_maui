@@ -1,12 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel"
+             x:DataType="viewmodel:QueryPageViewModel"
              x:Class="brickey_maui.Pages.QueryPage"
              Title="QueryPage">
-    <NavigationPage.TitleView>
-        <Label Text="title"/>
-    </NavigationPage.TitleView>
+    
     <VerticalStackLayout>
-        
+        <Grid ColumnDefinitions="*, *, *" RowDefinitions="3*, *, Auto">
+            
+            
+            <CarouselView x:Name="MainImageCarousel" 
+                          Grid.Row="0"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="20"/>
+            
+            <Label x:Name="QueryTitle"
+                   Text="{Binding QueryTitleText}"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="20"/>
+            
+            <!--Stats binding-->
+            <CollectionView x:Name="StatsCollectionView" 
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="20"
+                            ItemsSource="{Binding StatsCollection}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <!--Stats binding-->
+            
+            <Label x:Name="Description" 
+                   Text="{Binding DescriptionText}"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="20"/>
+        </Grid>
     </VerticalStackLayout>
+    
 </ContentPage>

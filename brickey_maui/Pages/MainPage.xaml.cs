@@ -1,4 +1,6 @@
-﻿using brickey_maui.Pages;
+﻿using brickey_maui.Models;
+using brickey_maui.Pages;
+using brickey_maui.ViewModel;
 using BrickeyCore;
 
 namespace brickey_maui;
@@ -14,11 +16,25 @@ public partial class MainPage : ContentPage
 
 	private async void OnCounterClicked(object sender, EventArgs e)
 	{
-        await Shell.Current.GoToAsync(nameof(QueryPage));
+        var x = new QueryModel()
+        {
+            Title = "cokolwiek",
+            Description = "Przykładowy opis",
+            Statistics = new List<string>()
+            {
+                "stat1", "stat2"
+            },
+            MainImages = new List<Image>() { }
+        };
+        var y = new QueryPageViewModel(x);
+
+        var z = new QueryPage(y);
+
+        await Navigation.PushAsync(z);
         try
         {
-            Uri uri = new Uri("https://www.rebrickable.com");
-            await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+            //Uri uri = new Uri("https://www.rebrickable.com");
+            //await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
         catch (Exception ex)
         {
@@ -27,10 +43,9 @@ public partial class MainPage : ContentPage
 
     }
 
-    private async void ChangePage(object sender, EventArgs e)
+    private async void ShowUserProfileClicked(object sender, EventArgs e)
     {
-        if (!RebrickableApiWrapper.isConnected)
-            await Shell.Current.GoToAsync(nameof(SetupRebrickablePage));
+        //await Shell.Current.GoToAsync(nameof(SetupRebrickablePage));
         OpenUserProfilePage();
     }
 

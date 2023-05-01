@@ -1,5 +1,6 @@
 using BrickeyCore;
 using BrickeyCore.RebrickableModel;
+using brickey_maui.ViewModel;
 
 namespace brickey_maui.Pages;
 
@@ -11,6 +12,12 @@ public partial class UserProfilePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    public UserProfilePage(UserProfileViewModel userProfileVM)
+    {
+        InitializeComponent();
+        BindingContext = userProfileVM;
+    }
 
     private async void OnLoaded(object sender, EventArgs args)
     {
@@ -25,8 +32,9 @@ public partial class UserProfilePage : ContentPage
 
     private void FillView()
     {
-		usernameLbl.Text = userProfile.username;
-		userIdLbl.Text = userProfile.user_id.ToString();
-		emailLbl.Text = userProfile.email;
+  //      ProfilePicture.Source;
+		//usernameLbl.Text = userProfile.username;
+		//userIdLbl.Text = userProfile.user_id.ToString();
+		//emailLbl.Text = userProfile.email;
     }
 }
