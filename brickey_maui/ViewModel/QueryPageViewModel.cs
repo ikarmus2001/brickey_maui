@@ -21,7 +21,7 @@ namespace brickey_maui.ViewModel
 
         public QueryPageViewModel(QueryPageModel query)
         {
-            
+            //query.
         }
     }
 }

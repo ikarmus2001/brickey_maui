@@ -31,9 +31,9 @@ namespace BrickeyCore
             return up ?? throw new Exception();
         }
 
-        internal async static Task<List<Minifigure>> GetMinifigure(string searchQuery)
+        internal async static Task<List<Minifigure>> GetMinifigures(string searchQuery)
         {
-            return ManualApiCalls.GetMinifigures(parameters);
+            return await ManualApiCalls.GetMinifigures(searchQuery);
         }
     }
 }

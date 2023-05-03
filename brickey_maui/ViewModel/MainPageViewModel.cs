@@ -26,10 +26,10 @@ namespace brickey_maui.ViewModel
             await RebrickableApiWrapper.Setup(apiKey, username, password);
         }
 
-        private void OnSearchbarTextChanged(value)
-        {
+        //private void OnSearchbarTextChanged(value)
+        //{
 
-        }
+        //}
 
         public static async Task MyProfileBtn_Clicked()
         {

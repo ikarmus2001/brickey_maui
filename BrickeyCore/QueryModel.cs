@@ -22,13 +22,20 @@ namespace brickey_maui.Models
             this.parameters = parameters;
         }
 
-        public async Task<object> RetrieveDatabaseInfo()
+        public async Task<List<object>> RetrieveDatabaseInfo()
         {
             switch (queryType)
             {
                 case QueryType.MiniFigure:
-                    return (await RebrickableApiWrapper.GetMinifigure(parameters)).ToQueryPageModel();
+                    var x = (await RebrickableApiWrapper.GetMinifigures(parameters["search"]));
+                    goto default;
+                case QueryType.Set:
+                case QueryType.Theme:
+                case QueryType.All:
+                default:
+                    break;
             }
+            return new List<object>() { };
         }
     }
 }

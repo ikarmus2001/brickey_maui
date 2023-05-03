@@ -7,52 +7,54 @@
              Title="MainPage"
              Loaded="ContentPage_Loaded">
 
-    <Grid RowDefinitions="*, 3*, 3*, 3*"
-          ColumnDefinitions=".75*, .25*">
+    <Grid RowDefinitions="3*, auto, 3*"
+          ColumnDefinitions="*, 5*, *">
 
-        <Image Grid.ColumnSpan="2" Grid.Row="0" 
-               Source="dotnet_bot.png" />
+        <Image Grid.ColumnSpan="20" Grid.RowSpan="20" 
+               Source="background.png" Aspect="Fill" />
 
-        <Grid Grid.ColumnSpan="20" ColumnDefinitions="10*, *" BackgroundColor="Transparent">
+        <Image Grid.Column="1"  Grid.Row="0" 
+               HorizontalOptions="Center"
+               Source="brickey_logo.png" />
+
+        <Grid Grid.Row="1" x:Name="SearchBarGrid" 
+              Grid.ColumnSpan="20" ColumnDefinitions="10*, *" BackgroundColor="Transparent">
             <Entry  x:Name="Searchbar"
                     Text="{Binding SearchbarText}"
-                    Grid.Row="1" 
-                    Grid.ColumnSpan="20"
+                    Grid.Row="1"
                     Placeholder="Here" 
                     VerticalOptions="Center"/>
             
             <Button x:Name="SearchBtn"
+                    Grid.Row="1"
+                    Grid.Column="1"
                     Clicked="SearchBtn_Clicked"/>
         </Grid>
-        
-        <Button x:Name="MyProfileBtn"
-                Grid.Column="0"
-                Grid.Row="2"
+
+        <Grid Grid.Column="1" Grid.Row="2" ColumnDefinitions="*"  RowDefinitions="*, *, *" >
+            <Button x:Name="MyProfileBtn"
+                Grid.Row="0"
                 Text="My profile"
-                Clicked="MyProfileBtn_Clicked"
-                HorizontalOptions="Center" />
-        <Button
-                Grid.Column="1"
-                Grid.Row="2"
-                x:Name="CollectionBtn"
+                Clicked="MyProfileBtn_Clicked"/>
+            
+            <Button x:Name="CollectionBtn"
+                Grid.Row="1"
                 Text="Collection"
                 Clicked="CollectionBtn_Clicked"
-                SemanticProperties.Hint="SemanticHint"
-                HorizontalOptions="Center" />
+                SemanticProperties.Hint="SemanticHint"/>
 
-        <Button
-                Grid.Column="0"
-                Grid.Row="3"
-                x:Name="SearchHistoryBtn"
+            <Button x:Name="SearchHistoryBtn"
+                Grid.Row="2"
                 Text="Search history"
-                Clicked="SearchHistoryBtn_Clicked"
-                HorizontalOptions="Center" />
-        <Button
+                Clicked="SearchHistoryBtn_Clicked"/>
+            
+            <!--<Button
                 Grid.Column="1"
                 Grid.Row="3"
                 x:Name="PlaceholderBtn"
                 Text="Placeholder"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" />-->
+        </Grid>
     </Grid>
     
     <!--<ScrollView>

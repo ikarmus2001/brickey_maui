@@ -62,9 +62,9 @@ namespace BrickeyCore
             */
         }
 
-        internal static async List<Minifigure> GetMinifigures(string search)
+        internal static async Task<List<Minifigure>> GetMinifigures(string search)
         {
-            var userRequest = "lego/minifigs";
+            var userRequest = "lego/minifigs/?";
             var parameters = new Dictionary<string, string>()
             {
                 {"search", search}
@@ -76,7 +76,7 @@ namespace BrickeyCore
             {
                 PropertyNameCaseInsensitive = true
             });
-            return minifiguresResponse = null ? throw new HttpRequestException("") : minifiguresResponse.results;
+            return minifiguresResponse == null ? throw new HttpRequestException("") : minifiguresResponse.results.ToList();
         }
 
         internal static async Task<UserProfile?> GetUserProfile()
@@ -100,7 +100,7 @@ namespace BrickeyCore
                 content += $"&{p.Key}={p.Value}";
             }
 
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://rebrickable.com/api/v3/users/_token/");
+            var request = new HttpRequestMessage(HttpMethod.Post, $"https://rebrickable.com/api/v3/{userRequest}");
             request.Content = new StringContent(content);
             request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
