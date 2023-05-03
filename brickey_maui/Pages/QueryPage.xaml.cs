@@ -3,25 +3,24 @@ using brickey_maui.ViewModel;
 
 namespace brickey_maui.Pages;
 
-public partial class QueryPage : ContentPage, IQueryAttributable
+[QueryProperty(nameof(queryPageModel), "QueryPageModel")]
+public partial class QueryPage : ContentPage
 {
-    public QueryPage()
+    QueryPageModel queryPageModel
     {
-        InitializeComponent();
+        set { UnpackBindings(value); }
     }
 
-    public QueryPage(QueryPageViewModel queryPageVM)
+    public QueryPage()
 	{
 		InitializeComponent();
-        BindingContext = queryPageVM;
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    private void UnpackBindings(QueryPageModel value)
     {
-        var qm = (QueryModel)query[nameof(QueryModel)];
-        MainImageCarousel.ItemsSource = qm.MainImages;
-        QueryTitleLbl.Text = qm.Title;
-        StatsCollectionView.ItemsSource = qm.Statistics;
-        DescriptionLbl.Text = qm.Description;
+        if (value != null)
+        {
+            BindingContext = new QueryPageViewModel(value);
+        }
     }
 }

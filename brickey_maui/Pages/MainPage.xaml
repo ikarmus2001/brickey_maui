@@ -7,18 +7,27 @@
              Title="MainPage"
              Loaded="ContentPage_Loaded">
 
-        <Grid RowDefinitions="*, 3*, 3*, 3*"
+    <Grid RowDefinitions="*, 3*, 3*, 3*"
           ColumnDefinitions=".75*, .25*">
 
         <Image Grid.ColumnSpan="2" Grid.Row="0" 
                Source="dotnet_bot.png" />
 
-        <Entry Grid.ColumnSpan="20" Grid.Row="1" Placeholder="Here" VerticalOptions="Center"/>
-
-        <Button
+        <Grid Grid.ColumnSpan="20" ColumnDefinitions="10*, *" BackgroundColor="Transparent">
+            <Entry  x:Name="Searchbar"
+                    Text="{Binding SearchbarText}"
+                    Grid.Row="1" 
+                    Grid.ColumnSpan="20"
+                    Placeholder="Here" 
+                    VerticalOptions="Center"/>
+            
+            <Button x:Name="SearchBtn"
+                    Clicked="SearchBtn_Clicked"/>
+        </Grid>
+        
+        <Button x:Name="MyProfileBtn"
                 Grid.Column="0"
                 Grid.Row="2"
-                x:Name="MyProfileBtn"
                 Text="My profile"
                 Clicked="MyProfileBtn_Clicked"
                 HorizontalOptions="Center" />

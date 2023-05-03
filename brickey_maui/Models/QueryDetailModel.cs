@@ -1,6 +1,6 @@
 ﻿namespace brickey_maui.Models
 {
-    public class QueryModel
+    public class QueryDetailModel
     {
         public string Title;
         public string Description;

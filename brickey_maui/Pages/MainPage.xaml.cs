@@ -29,5 +29,10 @@ public partial class MainPage : ContentPage
     {
         await viewModel.SearchHistoryBtn_Clicked();
     }
+
+    private async void SearchBtn_Clicked(object sender, EventArgs e)
+    {
+        await viewModel.SearchBtn_Clicked();
+    }
 }
 

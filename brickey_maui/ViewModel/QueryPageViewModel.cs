@@ -19,10 +19,9 @@ namespace brickey_maui.ViewModel
         [ObservableProperty]
         string descriptionText;
 
-        [RelayCommand]
-        void ChangeTitle(string title)
+        public QueryPageViewModel(QueryPageModel query)
         {
-            //queryTitleText = title.Trim();
+            
         }
     }
 }

@@ -30,5 +30,10 @@ namespace BrickeyCore
             UserProfile? up = await ManualApiCalls.GetUserProfile();
             return up ?? throw new Exception();
         }
+
+        internal async static Task<List<Minifigure>> GetMinifigure(string searchQuery)
+        {
+            return ManualApiCalls.GetMinifigures(parameters);
+        }
     }
 }

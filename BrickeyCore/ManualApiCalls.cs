@@ -1,4 +1,5 @@
 ﻿using BrickeyCore.RebrickableModel;
+using System.ComponentModel;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -8,7 +9,7 @@ namespace BrickeyCore
     {
         public static async Task<string> GetUserToken(string username, string password)
         {
-            var userRequest = $"users/_token/";
+            var userRequest = "users/_token/";
 
             var parameters = new Dictionary<string, string>()
             {
@@ -59,6 +60,23 @@ namespace BrickeyCore
             //}";
             //return x;
             */
+        }
+
+        internal static async List<Minifigure> GetMinifigures(string search)
+        {
+            var userRequest = "lego/minifigs";
+            var parameters = new Dictionary<string, string>()
+            {
+                {"search", search}
+            };
+            string content = await GetData(userRequest, parameters);
+            MinifiguresResponse minifiguresResponse;
+            
+            minifiguresResponse = JsonSerializer.Deserialize<MinifiguresResponse>(content, new JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return minifiguresResponse = null ? throw new HttpRequestException("") : minifiguresResponse.results;
         }
 
         internal static async Task<UserProfile?> GetUserProfile()
