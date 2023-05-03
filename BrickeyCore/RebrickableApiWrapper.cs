@@ -31,9 +31,28 @@ namespace BrickeyCore
             return up ?? throw new Exception();
         }
 
-        internal async static Task<List<Minifigure>> GetMinifigures(string searchQuery)
+        internal async static Task<PagedResponse<Minifigure>> GetMinifigures(string searchQuery)
         {
-            return await ManualApiCalls.GetMinifigures(searchQuery);
+            PagedResponse<Minifigure> x = await ManualApiCalls.GetMinifigures(searchQuery);
+            return x;
+        }
+
+        public async Task<PagedResponse<T>> RetrieveDatabaseInfo<T>(QueryModel qm)
+        {
+            switch (qm.queryType)
+            {
+                case QueryModel.QueryType.MiniFigure:
+                    PagedResponse<Minifigure> r = await GetMinifigures(qm.parameters["search"]);
+                    return (PagedResponse<T>)(object)r;
+                case QueryModel.QueryType.Set:
+                    //PagedResponse<Set> r = await GetSets(qm.parameters["search"]);
+                    //return (PagedResponse<T>)(object)r;
+                case QueryModel.QueryType.Part:
+                    //PagedResponse<Part> r = await GetParts(qm.parameters["search"]);
+                    //return (PagedResponse<T>)(object)r;
+                    break;
+            }
+            return new PagedResponse<T>();
         }
     }
 }

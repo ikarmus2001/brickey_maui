@@ -1,12 +1,22 @@
-﻿namespace BrickeyCore.RebrickableModel
+﻿using System.Text.Json.Serialization;
+
+namespace BrickeyCore.RebrickableModel
 {
     public class Minifigure
     {
-        public string set_num { get; set; }
         public string name { get; set; }
-        public int num_parts { get; set; }
-        public string set_img_url { get; set; }
-        public string set_url { get; set; }
+
+        public string set_num { get; set; }
+
+        [JsonPropertyName("num_parts")]
+        public int partsCount { get; set; }
+
+        [JsonPropertyName("set_img_url")]
+        public string imageURL { get; set; }
+
+        [JsonPropertyName("set_url")]
+        public string rebrickableURL { get; set; }
+
         public DateTime last_modified_dt { get; set; }
     }
 }

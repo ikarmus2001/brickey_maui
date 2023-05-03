@@ -1,13 +1,10 @@
 ﻿namespace brickey_maui.Models
 {
-    public class QueryPageModel
+    internal class QueryPageModel<T>
     {
-        internal List<QueryElement> queryElements;
-
-
-    }
-
-    public class QueryElement
-    {
+        internal List<T> queryElements;
+        internal int count;
+        internal string? next;
+        internal string? previous;
     }
 }

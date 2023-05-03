@@ -4,6 +4,7 @@ using BrickeyCore;
 using BrickeyCore.RebrickableModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Kotlin.Reflect;
 using System.Runtime.CompilerServices;
 
 namespace brickey_maui.ViewModel
@@ -26,11 +27,6 @@ namespace brickey_maui.ViewModel
             await RebrickableApiWrapper.Setup(apiKey, username, password);
         }
 
-        //private void OnSearchbarTextChanged(value)
-        //{
-
-        //}
-
         public static async Task MyProfileBtn_Clicked()
         {
             UserProfile up = await RebrickableApiWrapper.GetUserProfile();
@@ -48,8 +44,8 @@ namespace brickey_maui.ViewModel
 
         internal async static Task SearchBtn_Clicked()
         {
-            //QueryModel qm = await UnparseSearchbarText(searchbarText);
-            //QueryPageModel result = await qm.RetrieveDatabaseInfo();
+            QueryModel qm = await UnparseSearchbarText(searchbarText);
+            var result = await RebrickableApiWrapper.RetrieveDatabaseInfo(qm);
 
             //var navigationParam = new Dictionary<string, object>()
             //{

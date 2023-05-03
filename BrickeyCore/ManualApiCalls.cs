@@ -1,5 +1,4 @@
 ﻿using BrickeyCore.RebrickableModel;
-using System.ComponentModel;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -17,7 +16,7 @@ namespace BrickeyCore
                 {"password", password}
             };
 
-            UserTokenResponse userTokenResponse;
+            UserTokenResponse? userTokenResponse;
             string content = await PostData(userRequest, parameters);
             try
             {
@@ -32,51 +31,6 @@ namespace BrickeyCore
                 throw;
             }
             return userTokenResponse == null ? throw new HttpRequestException("") : userTokenResponse.user_token;
-
-            /* Sample request
-            //            var x = @"{
-            //  ""user_id"": 851367,
-            //  ""username"": ""mynick"",
-            //  ""email"": ""whatev@gmail.com"",
-            //  ""last_activity"": ""2023-04-16T11:56:53.926543Z"",
-            //  ""last_ip"": ""1.1.1.1"",
-            //  ""location"": null,
-            //  ""rewards"": {
-            //    ""points"": 15,
-            //    ""level"": 2,
-            //    ""badges"": [
-            //      39
-            //    ]
-            //  },
-            //  ""lego"": {
-            //    ""total_sets"": 2,
-            //    ""total_loose_parts"": 0,
-            //    ""total_set_parts"": 700,
-            //    ""lost_set_parts"": 0,
-            //    ""all_parts"": 700,
-            //    ""total_figs"": 2
-            //  },
-            //  ""avatar_img"": null
-            //}";
-            //return x;
-            */
-        }
-
-        internal static async Task<List<Minifigure>> GetMinifigures(string search)
-        {
-            var userRequest = "lego/minifigs/?";
-            var parameters = new Dictionary<string, string>()
-            {
-                {"search", search}
-            };
-            string content = await GetData(userRequest, parameters);
-            MinifiguresResponse minifiguresResponse;
-            
-            minifiguresResponse = JsonSerializer.Deserialize<MinifiguresResponse>(content, new JsonSerializerOptions()
-            {
-                PropertyNameCaseInsensitive = true
-            });
-            return minifiguresResponse == null ? throw new HttpRequestException("") : minifiguresResponse.results.ToList();
         }
 
         internal static async Task<UserProfile?> GetUserProfile()
@@ -85,6 +39,22 @@ namespace BrickeyCore
             string content = await GetData(userRequest);
 
             return JsonSerializer.Deserialize<UserProfile>(content);
+        }
+
+        internal static async Task<PagedResponse<Minifigure>> GetMinifigures(string search)
+        {
+            var userRequest = "lego/minifigs/?";
+            var parameters = new Dictionary<string, string>()
+            {
+                {"search", search}
+            };
+            string content = await GetData(userRequest, parameters);
+
+            PagedResponse<Minifigure>? minifiguresResponse = JsonSerializer.Deserialize<PagedResponse<Minifigure>>(content, new JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return minifiguresResponse == null ? throw new HttpRequestException("") : minifiguresResponse;
         }
 
         private static async Task<string> PostData(string userRequest, Dictionary<string, string> parameteres)
