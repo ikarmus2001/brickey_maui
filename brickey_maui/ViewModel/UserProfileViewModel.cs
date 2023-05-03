@@ -17,12 +17,12 @@ namespace brickey_maui.ViewModel
         [ObservableProperty]
         Image profilePicture;
 
-        public UserProfileViewModel(UserProfile userProfile)
+        public UserProfileViewModel(UserProfile profile)
         {
-            username = userProfile.username;
-            userId = userProfile.user_id;
-            email = userProfile.email;
-            profilePicture = (Image)userProfile.avatar_img;
+            profilePicture = (Image)profile.avatar_img;
+            userId = profile.user_id;
+            email = profile.email;
+            username = profile.username;
         }
     }
 }

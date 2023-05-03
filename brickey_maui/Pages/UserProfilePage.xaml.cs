@@ -1,20 +1,27 @@
 using brickey_maui.ViewModel;
 using BrickeyCore.RebrickableModel;
 
+
 namespace brickey_maui.Pages;
 
+[QueryProperty(nameof(profile), "Profile")]
 public partial class UserProfilePage : ContentPage
 {
-	UserProfile userProfile;
-
-    public UserProfilePage(UserProfileViewModel userProfileVM)
+    public UserProfile profile
     {
-        InitializeComponent();
-        BindingContext = userProfileVM;
+        set { UnpackProfile(value); }
     }
 
-    private async void OnLoaded(object sender, EventArgs args)
+	public UserProfilePage()
     {
-        //await RetrieveUserData();
+        InitializeComponent();
+    }
+
+    private void UnpackProfile(UserProfile value)
+    {
+        if (value != null)
+        {
+            BindingContext = new UserProfileViewModel(value);
+        }
     }
 }

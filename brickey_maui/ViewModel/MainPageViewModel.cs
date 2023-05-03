@@ -1,6 +1,7 @@
 ﻿using brickey_maui.Models;
 using brickey_maui.Pages;
 using BrickeyCore;
+using BrickeyCore.RebrickableModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -24,18 +25,12 @@ namespace brickey_maui.ViewModel
 
         public static async Task MyProfileBtn_Clicked()
         {
-            var x = await RebrickableApiWrapper.GetUserProfile();
-            var navParams = new Dictionary<string, object>()
+            UserProfile up = await RebrickableApiWrapper.GetUserProfile();
+            var navigationParam = new Dictionary<string, object>()
             {
-                {nameof(QueryModel), x}
+                {"Profile", up }
             };
-
-            await Shell.Current.GoToAsync(nameof(QueryPage), navParams);
-        }
-
-        private async Task OpenUserProfilePage()
-        {
-            await Shell.Current.GoToAsync(nameof(UserProfilePage));
+            await Shell.Current.GoToAsync(nameof(UserProfilePage), navigationParam);
         }
 
         internal async static Task CollectionBtn_Clicked()

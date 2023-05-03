@@ -8,14 +8,12 @@
     
     <VerticalStackLayout>
         <Grid ColumnDefinitions="*, *, *" RowDefinitions="3*, *, Auto">
-            
-            
             <CarouselView x:Name="MainImageCarousel" 
                           Grid.Row="0"
                           Grid.Column="0"
                           Grid.ColumnSpan="20"/>
             
-            <Label x:Name="QueryTitle"
+            <Label x:Name="QueryTitleLbl"
                    Text="{Binding QueryTitleText}"
                    Grid.Row="1"
                    Grid.Column="0"
@@ -35,7 +33,7 @@
             </CollectionView>
             <!--Stats binding-->
             
-            <Label x:Name="Description" 
+            <Label x:Name="DescriptionLbl"
                    Text="{Binding DescriptionText}"
                    Grid.Row="2"
                    Grid.Column="0"

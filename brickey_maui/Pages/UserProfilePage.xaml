@@ -4,8 +4,7 @@
              x:Class="brickey_maui.Pages.UserProfilePage"
              xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel"
              x:DataType="viewmodel:UserProfileViewModel"
-             Title="UserProfilePage"
-             Loaded="OnLoaded">
+             Title="UserProfilePage">
     
     <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, 2*">
 
