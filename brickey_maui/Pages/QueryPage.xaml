@@ -7,7 +7,7 @@
              Title="QueryPage">
     
     <VerticalStackLayout>
-        <Grid ColumnDefinitions="*, *, *" RowDefinitions="3*, *, Auto">
+        <!--<Grid ColumnDefinitions="*, *, *" RowDefinitions="3*, *, Auto">
             <CarouselView x:Name="MainImageCarousel" 
                           Grid.Row="0"
                           Grid.Column="0"
@@ -19,7 +19,7 @@
                    Grid.Column="0"
                    Grid.ColumnSpan="20"/>
             
-            <!--Stats binding-->
+            --><!--Stats binding--><!--
             <CollectionView x:Name="StatsCollectionView" 
                             Grid.Row="2"
                             Grid.Column="0"
@@ -31,14 +31,14 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <!--Stats binding-->
+            --><!--Stats binding--><!--
             
             <Label x:Name="DescriptionLbl"
                    Text="{Binding DescriptionText}"
                    Grid.Row="2"
                    Grid.Column="0"
                    Grid.ColumnSpan="20"/>
-        </Grid>
+        </Grid>-->
     </VerticalStackLayout>
     
 </ContentPage>

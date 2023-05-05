@@ -54,7 +54,7 @@ namespace BrickeyCore
             {
                 PropertyNameCaseInsensitive = true
             });
-            return minifiguresResponse == null ? throw new HttpRequestException("") : minifiguresResponse;
+            return minifiguresResponse ?? throw new HttpRequestException("");
         }
 
         private static async Task<string> PostData(string userRequest, Dictionary<string, string> parameteres)

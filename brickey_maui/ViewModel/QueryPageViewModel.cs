@@ -1,27 +1,17 @@
 ﻿using brickey_maui.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
 namespace brickey_maui.ViewModel
 {
-    public partial class QueryPageViewModel : ObservableObject
+    internal partial class QueryPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        ObservableCollection<Image> mainImageCarousel;
+        List<QueryElement> queryElements;
 
-        [ObservableProperty]
-        ObservableCollection<string> statsCollection;
-
-        [ObservableProperty]
-        string queryTitleText;
-
-        [ObservableProperty]
-        string descriptionText;
-
-        public QueryPageViewModel(QueryPageModel query)
+        internal QueryPageViewModel(QueryPageModel query)
         {
-            //query.
+            this.queryElements = query.queryElements;
         }
     }
 }

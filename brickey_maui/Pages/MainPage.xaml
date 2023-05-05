@@ -5,7 +5,7 @@
              x:Class="brickey_maui.Pages.MainPage"
              x:DataType="viewmodel:MainPageViewModel"
              Title="MainPage"
-             Loaded="ContentPage_Loaded">
+             Loaded="MainPageVM_Loaded">
 
     <Grid RowDefinitions="3*, auto, auto, 3*"
           ColumnDefinitions="*, 5*, *">
@@ -20,18 +20,21 @@
 
             <RadioButton x:Name="SetRadio" 
                          Grid.Column="0"
-                         Content="Set"/>
-            
+                         Content="Set"
+                         IsChecked="{Binding SetRadioChecked}"/>
+
             <RadioButton x:Name="MinifiguresRadio"
                          Grid.Column="1"
-                         Content="Minifigures"/>
-            
+                         Content="Minifigures"
+                         IsChecked="{Binding MinifiguresRadioChecked}"/>
+
             <RadioButton x:Name="PartRadio"
                          Grid.Column="2"
-                         Content="Parts"/>
-            
+                         Content="Parts"
+                         IsChecked="{Binding PartRadioChecked}"/>
+
         </Grid>
-        
+
         <Grid x:Name="SearchBarGrid" 
               Grid.ColumnSpan="20" 
               Grid.Row="2" 
@@ -48,27 +51,27 @@
                          Grid.Row="1"
                          Grid.Column="1"
                          Source="magnifying_glass_icon.png"
-                         Clicked="SearchBtn_Clicked"/>
-            
+                         Command="{Binding SearchBtn_Clicked}"/>
+
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="3" ColumnDefinitions="*"  RowDefinitions="*, *, *" >
             <Button x:Name="MyProfileBtn"
                 Grid.Row="0"
                 Text="My profile"
-                Clicked="MyProfileBtn_Clicked"/>
-            
+                Command="{Binding MyProfileBtn_Clicked}"/>
+
             <Button x:Name="CollectionBtn"
                 Grid.Row="1"
                 Text="Collection"
-                Clicked="CollectionBtn_Clicked"
+                Command="{Binding CollectionBtn_Clicked}"
                 SemanticProperties.Hint="SemanticHint"/>
 
             <Button x:Name="SearchHistoryBtn"
                 Grid.Row="2"
                 Text="Search history"
-                Clicked="SearchHistoryBtn_Clicked"/>
-            
+                Command="{Binding SearchHistoryBtn_Clicked}"/>
+
         </Grid>
     </Grid>
 </ContentPage>

@@ -37,21 +37,29 @@ namespace BrickeyCore
             return x;
         }
 
-        public async Task<PagedResponse<T>> RetrieveDatabaseInfo<T>(QueryModel qm)
+        public static async Task<PagedResponse<T>> RetrieveDatabaseInfo<T>(QueryModel qm)
         {
-            switch (qm.queryType)
+            PagedResponse<T> r;
+            switch (typeof(T))
             {
-                case QueryModel.QueryType.MiniFigure:
-                    PagedResponse<Minifigure> r = await GetMinifigures(qm.parameters["search"]);
-                    return (PagedResponse<T>)(object)r;
-                case QueryModel.QueryType.Set:
-                    //PagedResponse<Set> r = await GetSets(qm.parameters["search"]);
-                    //return (PagedResponse<T>)(object)r;
-                case QueryModel.QueryType.Part:
-                    //PagedResponse<Part> r = await GetParts(qm.parameters["search"]);
-                    //return (PagedResponse<T>)(object)r;
-                    break;
+                case Type mf when mf == typeof(Minifigure):
+                    r = (dynamic)await GetMinifigures(qm.parameters["search"]);
+                    return r;
             }
+
+            //        switch (qm.queryType)
+            //{
+            //    case QueryModel.QueryType.MiniFigure:
+            //        PagedResponse<Minifigure> r = await GetMinifigures(qm.parameters["search"]);
+            //        return r;
+            //    case QueryModel.QueryType.Set:
+            //        //PagedResponse<Set> r = await GetSets(qm.parameters["search"]);
+            //        //return (PagedResponse<T>)(object)r;
+            //    case QueryModel.QueryType.Part:
+            //        //PagedResponse<Part> r = await GetParts(qm.parameters["search"]);
+            //        //return (PagedResponse<T>)(object)r;
+            //        break;
+            //}
             return new PagedResponse<T>();
         }
     }
