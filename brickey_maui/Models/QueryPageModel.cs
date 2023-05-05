@@ -7,11 +7,4 @@
         internal string? next;
         internal string? previous;
     }
-
-    internal class QueryElement
-    {
-        internal Image thumbnail;
-        internal string title;
-        internal string description;
-    }
 }

@@ -51,7 +51,7 @@
                          Grid.Row="1"
                          Grid.Column="1"
                          Source="magnifying_glass_icon.png"
-                         Command="{Binding SearchBtn_Clicked}"/>
+                         Clicked="SearchBtn_Clicked"/>
 
         </Grid>
 
@@ -59,18 +59,18 @@
             <Button x:Name="MyProfileBtn"
                 Grid.Row="0"
                 Text="My profile"
-                Command="{Binding MyProfileBtn_Clicked}"/>
+                Clicked="MyProfileBtn_Clicked"/>
 
             <Button x:Name="CollectionBtn"
                 Grid.Row="1"
                 Text="Collection"
-                Command="{Binding CollectionBtn_Clicked}"
+                Clicked="CollectionBtn_Clicked"
                 SemanticProperties.Hint="SemanticHint"/>
 
             <Button x:Name="SearchHistoryBtn"
                 Grid.Row="2"
                 Text="Search history"
-                Command="{Binding SearchHistoryBtn_Clicked}"/>
+                Clicked="SearchHistoryBtn_Clicked"/>
 
         </Grid>
     </Grid>

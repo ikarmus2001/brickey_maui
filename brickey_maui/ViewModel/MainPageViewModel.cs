@@ -3,7 +3,6 @@ using brickey_maui.Pages;
 using BrickeyCore;
 using BrickeyCore.RebrickableModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using static BrickeyCore.QueryModel;
 
 namespace brickey_maui.ViewModel
@@ -36,7 +35,6 @@ namespace brickey_maui.ViewModel
             await RebrickableApiWrapper.Setup(apiKey, username, password);
         }
 
-        [RelayCommand]
         internal async void SearchBtn_Clicked()
         {
             QueryModel qm;
@@ -65,8 +63,7 @@ namespace brickey_maui.ViewModel
             await Shell.Current.GoToAsync(nameof(QueryPage), navigationParam);
         }
 
-        [RelayCommand]
-        public async void MyProfileBtn_Clicked()
+        public static async void MyProfileBtn_Clicked()
         {
             UserProfile up = await RebrickableApiWrapper.GetUserProfile();
             var navigationParam = new Dictionary<string, object>()
@@ -76,8 +73,7 @@ namespace brickey_maui.ViewModel
             await Shell.Current.GoToAsync(nameof(UserProfilePage), navigationParam);
         }
 
-        [RelayCommand]
-        internal async Task CollectionBtn_Clicked()
+        internal static async Task CollectionBtn_Clicked()
         {
             
         }
@@ -88,7 +84,7 @@ namespace brickey_maui.ViewModel
         {
             var p = new Dictionary<string, string>()
             {
-                {"", searchbarText }
+                {"search", searchbarText }
             };
 
             return new QueryModel()
@@ -98,7 +94,6 @@ namespace brickey_maui.ViewModel
             };
         }
 
-        [RelayCommand]
         internal async static Task SearchHistoryBtn_Clicked()
         {
             

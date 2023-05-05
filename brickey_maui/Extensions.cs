@@ -23,7 +23,7 @@ namespace brickey_maui
             {
                 Image thumb = new()
                 {
-                    Source = ImageSource.FromUri(new Uri(mf.imageURL))
+                    Source = ImageSource.FromUri(new Uri(mf.imageURL ?? "https://cdn-icons-png.flaticon.com/512/1548/1548682.png"))
                 };
                     
                 result.Add(new QueryElement()
