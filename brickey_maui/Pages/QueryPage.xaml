@@ -2,47 +2,43 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel"
-             xmlns:queryEntryTemplate="clr-namespace:brickey_maui.Pages"
+             xmlns:model="clr-namespace:brickey_maui.Models"
              x:DataType="viewmodel:QueryPageViewModel"
              x:Class="brickey_maui.Pages.QueryPage"
              Title="QueryPage">
-    
-    <VerticalStackLayout>
-        <!--<Grid ColumnDefinitions="*, *, *" RowDefinitions="3*, *, Auto">-->
-            <!--<CarouselView x:Name="MainImageCarousel" 
-                          Grid.Row="0"
-                          Grid.Column="0"
-                          Grid.ColumnSpan="20"/>
-            
-            <Label x:Name="QueryTitleLbl"
-                   Text="{Binding QueryTitleText}"
-                   Grid.Row="1"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="20"/>-->
-            
-            <!--Stats binding-->
-            <CollectionView x:Name="StatsCollectionView" 
+
+    <ScrollView >
+        <CollectionView x:Name="StatsCollectionView" 
                             Grid.Row="2"
                             Grid.Column="0"
                             Grid.ColumnSpan="20"
                             ItemsSource="{Binding QueryElements}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <queryEntryTemplate:QueryElementControl 
-                            Title="{Binding Path=TitleProperty}" 
-                            Thumbnail="{Binding Path=ThumbnailProperty}"/>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <!--Stats binding-->
-            
-            <!--<Label x:Name="DescriptionLbl"
-                   Text="{Binding DescriptionText}"
-                   Grid.Row="2"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="20"/>
-        </Grid>-->
-    </VerticalStackLayout>
-    
-</ContentPage>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:QueryElement">
+                    
+                        <Grid MinimumWidthRequest="120" MaximumHeightRequest="200">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="6*" />
+                            </Grid.ColumnDefinitions>
 
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Image Grid.Column="0" Source="{Binding thumbnail}" />
+                            <Label Grid.Column="1" Grid.Row="0" 
+                               Text="{Binding title}" 
+                               FontSize="28"/>
+                            <Label Grid.Column="1" Grid.Row="1" 
+                               
+                               Text="{Binding description}" />
+                        </Grid>
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+
+</ContentPage>

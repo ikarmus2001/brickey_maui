@@ -3,24 +3,29 @@ using brickey_maui.ViewModel;
 
 namespace brickey_maui.Pages;
 
-[QueryProperty(nameof(queryPageModel), "QueryPageModel")]
-public partial class QueryPage : ContentPage
+//[QueryProperty(nameof(queryPageModel), "QueryPageModel")]
+public partial class QueryPage : ContentPage, IQueryAttributable
 {
-    QueryPageModel queryPageModel
-    {
-        set { UnpackBindings(value); }
-    }
+    //internal QueryPageModel queryPageModel
+    //{
+    //    set { UnpackBindings(value); }
+    //}
 
     public QueryPage()
 	{
 		InitializeComponent();
     }
 
-    private void UnpackBindings(QueryPageModel value)
+    //private void UnpackBindings(QueryPageModel value)
+    //{
+    //    if (value != null)
+    //    {
+            
+    //    }
+    //}
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (value != null)
-        {
-            BindingContext = new QueryPageViewModel(value);
-        }
+        BindingContext = new QueryPageViewModel((QueryPageModel)query[nameof(QueryPageModel)]);
     }
 }

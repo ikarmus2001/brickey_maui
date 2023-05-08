@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Maui;
+﻿using brickey_maui.Pages;
+using CommunityToolkit.Maui;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace brickey_maui;
@@ -20,8 +22,8 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-		//builder.Services.AddSingleton<MainPage>();
-        return builder.Build();
+		builder.Services.AddTransient<QueryPage>();
+		return builder.Build();
 	}
 
 	public static void SaveUserLoginData(string username, string password, string apiKey)

@@ -7,11 +7,11 @@ namespace brickey_maui.ViewModel
     internal partial class QueryPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        List<QueryElement> queryElements;
+        ObservableCollection<QueryElement> queryElements;
 
         internal QueryPageViewModel(QueryPageModel query)
         {
-            this.queryElements = query.queryElements;
+            this.queryElements = new ObservableCollection<QueryElement>(query.queryElements);
         }
     }
 }

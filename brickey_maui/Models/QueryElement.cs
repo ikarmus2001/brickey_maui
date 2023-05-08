@@ -2,8 +2,9 @@
 {
     public partial class QueryElement
     {
-        public Image thumbnail;
-        public string title;
-        public string description;
+        
+        public ImageSource thumbnail { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
     }
 }

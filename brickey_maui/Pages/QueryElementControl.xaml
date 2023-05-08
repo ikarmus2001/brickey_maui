@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="brickey_maui.Pages.QueryElementControl">
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="6*" />
         </Grid.ColumnDefinitions>
 
         <Image x:Name="ThumbnailImg"/>
         <Label x:Name="TitleLbl"
-               Grid.Column="1"/>
+               Grid.Column="1"/>-->
     </Grid>
 </ContentView>

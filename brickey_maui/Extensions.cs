@@ -20,17 +20,12 @@ namespace brickey_maui
         {
             var result = new List<QueryElement>();
             foreach (Minifigure mf in mfs)
-            {
-                Image thumb = new()
-                {
-                    Source = ImageSource.FromUri(new Uri(mf.imageURL ?? "https://cdn-icons-png.flaticon.com/512/1548/1548682.png"))
-                };
-                    
+            {       
                 result.Add(new QueryElement()
                 {
                     title = mf.name,
                     description = mf.set_num,
-                    thumbnail = thumb
+                    thumbnail = ImageSource.FromUri(new Uri(mf.imageURL ?? "https://cdn-icons-png.flaticon.com/512/1548/1548682.png"))
                 });
             }
             return result;
