@@ -9,33 +9,34 @@
 
     <ScrollView >
         <CollectionView x:Name="StatsCollectionView" 
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="20"
-                            ItemsSource="{Binding QueryElements}">
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="20"
+                        ItemsSource="{Binding QueryElements}"
+                        SelectionMode="Single"
+                        SelectionChanged="StatsCollectionView_SelectionChanged"
+                        >
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:QueryElement">
-                    
-                        <Grid MinimumWidthRequest="120" MaximumHeightRequest="200">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="6*" />
-                            </Grid.ColumnDefinitions>
+                    <Grid MinimumWidthRequest="120" MaximumHeightRequest="200">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="6*" />
+                        </Grid.ColumnDefinitions>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="3*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                            <Image Grid.Column="0" Source="{Binding thumbnail}" />
-                            <Label Grid.Column="1" Grid.Row="0" 
+                        <Image Grid.Column="0" Source="{Binding thumbnail}" />
+                        <Label Grid.Column="1" Grid.Row="0" 
                                Text="{Binding title}" 
                                FontSize="28"/>
-                            <Label Grid.Column="1" Grid.Row="1" 
+                        <Label Grid.Column="1" Grid.Row="1" 
                                
                                Text="{Binding description}" />
-                        </Grid>
-                    
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

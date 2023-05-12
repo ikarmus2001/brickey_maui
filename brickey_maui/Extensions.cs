@@ -24,7 +24,8 @@ namespace brickey_maui
                 result.Add(new QueryElement()
                 {
                     title = mf.name,
-                    description = mf.set_num,
+                    description = $"{mf.Id}",
+                    id = mf.Id,
                     thumbnail = ImageSource.FromUri(new Uri(mf.imageURL ?? "https://cdn-icons-png.flaticon.com/512/1548/1548682.png"))
                 });
             }

@@ -4,7 +4,7 @@
     {
         public string Title;
         public string Description;
-        public List<Image> MainImages;
+        public List<ImageSource> MainImages;
         public List<string> Statistics;
     }
 }

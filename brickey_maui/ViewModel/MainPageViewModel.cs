@@ -39,10 +39,13 @@ namespace brickey_maui.ViewModel
         {
             QueryModel qm;
             QueryPageModel result = new QueryPageModel();
+            var navigationParam = new Dictionary<string, object>();
             if (MinifiguresRadioChecked)
             {
                 qm = UnparseSearchbarText(SearchbarText, QueryType.MiniFigure);
+                navigationParam.Add(nameof(List<Minifigure>), qm);
                 result = (await RebrickableApiWrapper.RetrieveDatabaseInfo<Minifigure>(qm)).ToQueryPageModel();
+                navigationParam.Add(nameof(QueryType), QueryType.MiniFigure);
             }
             else if (PartRadioChecked)
             {
@@ -56,10 +59,7 @@ namespace brickey_maui.ViewModel
             }
             else throw new Exception();
 
-            var navigationParam = new Dictionary<string, object>()
-            {
-                {nameof(QueryPageModel), result}
-            };
+            navigationParam.Add(nameof(QueryPageModel), result);
             await Shell.Current.GoToAsync(nameof(QueryPage), navigationParam);
         }
 

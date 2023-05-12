@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-maccatalyst;net7.0-ios</TargetFrameworks>
+		<TargetFrameworks>net7.0-android</TargetFrameworks>  <!--;net7.0-maccatalyst;net7.0-ios-->
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -71,6 +71,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Pages\QueryDetailPage.xaml.cs">
+		  <DependentUpon>QueryDetailPage.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Pages\QueryElementControl.xaml.cs">
 			<DependentUpon>QueryElementControl.xaml</DependentUpon>
 		</Compile>
@@ -80,6 +83,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<MauiXaml Update="Pages\QueryDetailPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Pages\QueryElementControl.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
