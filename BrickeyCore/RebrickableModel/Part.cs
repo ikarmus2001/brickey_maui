@@ -1,12 +1,19 @@
-﻿namespace BrickeyCore.RebrickableModel
+﻿using System.Text.Json.Serialization;
+
+namespace BrickeyCore.RebrickableModel
 {
     public class Part
     {
-        public string part_num { get; set; }
+        [JsonPropertyName("part_num")]
+        public string Id { get; set; }
         public string name { get; set; }
         public int part_cat_id { get; set; }
-        public string part_url { get; set; }
-        public string part_img_url { get; set; }
+
+        [JsonPropertyName("part_url")]
+        public string rebrickableURL { get; set; }
+
+        [JsonPropertyName("part_img_url")]
+        public string imageURL { get; set; }
         public External_Ids external_ids { get; set; }
         public string print_of { get; set; }
     }

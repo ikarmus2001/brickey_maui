@@ -57,6 +57,38 @@ namespace BrickeyCore
             return minifiguresResponse ?? throw new HttpRequestException("");
         }
 
+        internal static async Task<PagedResponse<Set>> GetSets(string search)
+        {
+            var userRequest = "lego/sets/?";
+            var parameters = new Dictionary<string, string>()
+            {
+                {"search", search}
+            };
+            string content = await GetData(userRequest, parameters);
+
+            PagedResponse<Set>? minifiguresResponse = JsonSerializer.Deserialize<PagedResponse<Set>>(content, new JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return minifiguresResponse ?? throw new HttpRequestException("");
+        }
+
+        internal static async Task<PagedResponse<Part>> GetParts(string search)
+        {
+            var userRequest = "lego/parts/?";
+            var parameters = new Dictionary<string, string>()
+            {
+                {"search", search}
+            };
+            string content = await GetData(userRequest, parameters);
+
+            PagedResponse<Part>? minifiguresResponse = JsonSerializer.Deserialize<PagedResponse<Part>>(content, new JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return minifiguresResponse ?? throw new HttpRequestException("");
+        }
+
         private static async Task<string> PostData(string userRequest, Dictionary<string, string> parameteres)
         {
             if (parameteres.Count <= 0)

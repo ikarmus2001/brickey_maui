@@ -21,14 +21,15 @@ namespace brickey_maui.ViewModel
 
         internal async void ItemClicked(QueryElement x)
         {
-            switch (elementsType)
-            {
-                case QueryType.MiniFigure:
-                    await GetMinifigure(x.id)
-                    break;
+            //switch (elementsType)
+            //{
+            //    case QueryType.MiniFigure:
+            //        await GetMinifigure(x.id)
+            //        break;
 
-            }
-            
-            await Shell.Current.
+            //}
+
+            //await Shell.Current.
+        }
     }
 }

@@ -33,34 +33,38 @@ namespace BrickeyCore
 
         internal async static Task<PagedResponse<Minifigure>> GetMinifigures(string searchQuery)
         {
-            PagedResponse<Minifigure> x = await ManualApiCalls.GetMinifigures(searchQuery);
-            return x;
+            return await ManualApiCalls.GetMinifigures(searchQuery);
+        }
+
+        internal async static Task<PagedResponse<Set>> GetSets(string searchQuery)
+        {
+            return await ManualApiCalls.GetSets(searchQuery);
+        }
+
+        internal async static Task<PagedResponse<Part>> GetParts(string searchQuery)
+        {
+            return await ManualApiCalls.GetParts(searchQuery);
         }
 
         public static async Task<PagedResponse<T>> RetrieveDatabaseInfo<T>(QueryModel qm)
         {
-            PagedResponse<T> r;
+            PagedResponse<T> r = null;
             switch (typeof(T))
             {
                 case Type mf when mf == typeof(Minifigure):
                     r = (dynamic)await GetMinifigures(qm.parameters["search"]);
-                    return r;
+                    break;
+                case Type set when set == typeof(Set):
+                    r = (dynamic)await GetSets(qm.parameters["search"]);
+                    break;
+                case Type part when part == typeof(Part):
+                    r = (dynamic)await GetParts(qm.parameters["search"]);
+                    break;
+
             }
 
-            //        switch (qm.queryType)
-            //{
-            //    case QueryModel.QueryType.MiniFigure:
-            //        PagedResponse<Minifigure> r = await GetMinifigures(qm.parameters["search"]);
-            //        return r;
-            //    case QueryModel.QueryType.Set:
-            //        //PagedResponse<Set> r = await GetSets(qm.parameters["search"]);
-            //        //return (PagedResponse<T>)(object)r;
-            //    case QueryModel.QueryType.Part:
-            //        //PagedResponse<Part> r = await GetParts(qm.parameters["search"]);
-            //        //return (PagedResponse<T>)(object)r;
-            //        break;
-            //}
-            return new PagedResponse<T>();
+
+            return r ?? throw new Exception();
         }
     }
 }

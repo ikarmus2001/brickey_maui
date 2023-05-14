@@ -32,26 +32,59 @@ namespace brickey_maui
             return result;
         }
 
-        //internal static QueryPageModel ToQueryPageModel(this PagedResponse<Part> prPart)
-        //{
-        //    return new QueryPageModel()
-        //    {
-        //        count = prPart.count,
-        //        next = prPart.next,
-        //        previous = prPart.previous,
-        //        queryElements = prPart.results.ToQueryElement()
-        //    };
-        //}
+        internal static QueryPageModel ToQueryPageModel(this PagedResponse<Part> prPart)
+        {
+            return new QueryPageModel()
+            {
+                count = prPart.count,
+                next = prPart.next,
+                previous = prPart.previous,
+                queryElements = prPart.results.ToQueryElement()
+            };
+        }
 
-        //internal static QueryPageModel ToQueryPageModel(this PagedResponse<BrickeyCore.RebrickableModel.Set> prMinifigure)
-        //{
-        //    return new QueryPageModel()
-        //    {
-        //        count = ,
-        //        next = ,
-        //        previous = ,
-        //        queryElements =
-        //    };
-        //}
+        internal static List<QueryElement> ToQueryElement(this List<Part> parts)
+        {
+            var result = new List<QueryElement>();
+            foreach (Part p in parts)
+            {
+                result.Add(new QueryElement()
+                {
+                    title = p.name,
+                    description = $"{p.Id}",
+                    id = p.Id,
+                    thumbnail = ImageSource.FromUri(new Uri(p.imageURL ?? "https://cdn-icons-png.flaticon.com/512/1548/1548682.png"))
+                });
+            }
+            return result;
+        }
+
+
+        internal static QueryPageModel ToQueryPageModel(this PagedResponse<Set> prSets)
+        {
+            return new QueryPageModel()
+            {
+                count = prSets.count,
+                next = prSets.next,
+                previous = prSets.previous,
+                queryElements = prSets.results.ToQueryElement()
+            };
+        }
+
+        internal static List<QueryElement> ToQueryElement(this List<Set> sets)
+        {
+            var result = new List<QueryElement>();
+            foreach (Set s in sets)
+            {
+                result.Add(new QueryElement()
+                {
+                    title = s.name,
+                    description = $"{s.Id}",
+                    id = s.Id,
+                    thumbnail = ImageSource.FromUri(new Uri(s.imageURL ?? "https://cdn-icons-png.flaticon.com/512/1548/1548682.png"))
+                });
+            }
+            return result;
+        }
     }
 }

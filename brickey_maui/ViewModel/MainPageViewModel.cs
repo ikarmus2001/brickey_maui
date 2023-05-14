@@ -49,13 +49,17 @@ namespace brickey_maui.ViewModel
             }
             else if (PartRadioChecked)
             {
-                //qm = UnparseSearchbarText(SearchbarText, QueryType.Part);
-                //result = (await RebrickableApiWrapper.RetrieveDatabaseInfo<Part>(qm)).ToQueryPageModel();
+                qm = UnparseSearchbarText(SearchbarText, QueryType.Part);
+                navigationParam.Add(nameof(List<Part>), qm);
+                result = (await RebrickableApiWrapper.RetrieveDatabaseInfo<Part>(qm)).ToQueryPageModel();
+                navigationParam.Add(nameof(QueryType), QueryType.Part);
             }
             else if (SetRadioChecked)
             {
-                //qm = UnparseSearchbarText(SearchbarText, QueryType.Set);
-                //result = (await RebrickableApiWrapper.RetrieveDatabaseInfo<BrickeyCore.RebrickableModel.Set>(qm)).ToQueryPageModel();
+                qm = UnparseSearchbarText(SearchbarText, QueryType.Set);
+                navigationParam.Add(nameof(List<Set>), qm);
+                result = (await RebrickableApiWrapper.RetrieveDatabaseInfo<Set>(qm)).ToQueryPageModel();
+                navigationParam.Add(nameof(QueryType), QueryType.Set);
             }
             else throw new Exception();
 

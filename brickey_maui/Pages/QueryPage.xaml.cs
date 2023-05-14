@@ -14,15 +14,15 @@ public partial class QueryPage : ContentPage, IQueryAttributable
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        BindingContext = new QueryPageViewModel((QueryPageModel)query[nameof(QueryPageModel)]);
-        (QueryType)query[nameof(QueryType)]);
-        cachedElements = ((List<Minifigure>)query[nameof(List<Minifigure>)]);
+        BindingContext = new QueryPageViewModel((QueryPageModel)query[nameof(QueryPageModel)], 
+            (QueryType)query[nameof(QueryType)]);
+        //cachedElements = ((List<Minifigure>)query[nameof(List<Minifigure>)]);
     }
 
     private void StatsCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var x = e.CurrentSelection.FirstOrDefault() as QueryElement;
         Console.WriteLine(x.ToString());
-        ItemClicked(QueryElement x, );
+        //ItemClicked(QueryElement x, );
     }
 }
