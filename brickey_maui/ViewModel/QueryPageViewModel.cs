@@ -1,4 +1,5 @@
 ﻿using brickey_maui.Models;
+using brickey_maui.Pages;
 using BrickeyCore.RebrickableModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
@@ -6,12 +7,14 @@ using static BrickeyCore.QueryModel;
 
 namespace brickey_maui.ViewModel
 {
-    internal partial class QueryPageViewModel : ObservableObject
+    internal partial class QueryPageViewModel<T> : ObservableObject
     {
         [ObservableProperty]
         ObservableCollection<QueryElement> queryElements;
 
-        QueryType elementsType;  // might be redundant: set_num prefix
+        internal List<T> cachedItems;
+
+        QueryType elementsType;  // might be redundant: id prefix
 
         internal QueryPageViewModel(QueryPageModel query, QueryType qt)
         {
@@ -19,17 +22,27 @@ namespace brickey_maui.ViewModel
             elementsType = qt;
         }
 
-        internal async void ItemClicked(QueryElement x)
+        internal async void ItemClicked(string itemId)
         {
-            //switch (elementsType)
-            //{
-            //    case QueryType.MiniFigure:
-            //        await GetMinifigure(x.id)
-            //        break;
+            var parameters = new Dictionary<string, object>();
+            var item = cachedItems.Where(elem => elem.Id == itemId).FirstOrDefault();
 
-            //}
+            parameters.Add(nameof(item), item);
 
-            //await Shell.Current.
+            switch (elementsType)
+            {
+                case QueryType.Minifigure:
+                    await Shell.Current.GoToAsync(nameof(MinifigureDetailPage), parameters);
+                    break;
+                //case QueryType.Set:
+                //    await Shell.Current.GoToAsync(nameof(SetDetailPage), parameters);
+                //    break;
+                //case QueryType.Part:
+                //    await Shell.Current.GoToAsync(nameof(PartDetailPage), parameters);
+                //    break;
+                default:
+                    throw new Exception();
+            }   
         }
     }
 }

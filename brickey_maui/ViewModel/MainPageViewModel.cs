@@ -16,7 +16,7 @@ namespace brickey_maui.ViewModel
         public bool setRadioChecked;
 
         [ObservableProperty]
-        public bool minifiguresRadioChecked;
+        public bool minifiguresRadioChecked = true;
 
         [ObservableProperty]
         public bool partRadioChecked;
@@ -39,31 +39,46 @@ namespace brickey_maui.ViewModel
         {
             QueryModel qm;
             QueryPageModel result = new QueryPageModel();
+            QueryType qt;
             var navigationParam = new Dictionary<string, object>();
             if (MinifiguresRadioChecked)
             {
-                qm = UnparseSearchbarText(SearchbarText, QueryType.MiniFigure);
+                qt = QueryType.Minifigure;
+                qm = UnparseSearchbarText(SearchbarText, QueryType.Minifigure);
+
+                var data = await RebrickableApiWrapper.RetrieveDatabaseInfo<Minifigure>(qm);
+                result = data.ToQueryPageModel();
+
                 navigationParam.Add(nameof(List<Minifigure>), qm);
-                result = (await RebrickableApiWrapper.RetrieveDatabaseInfo<Minifigure>(qm)).ToQueryPageModel();
-                navigationParam.Add(nameof(QueryType), QueryType.MiniFigure);
+                navigationParam.Add(nameof(data), data);
             }
             else if (PartRadioChecked)
             {
+                qt = QueryType.Part;
                 qm = UnparseSearchbarText(SearchbarText, QueryType.Part);
+
+                var data = await RebrickableApiWrapper.RetrieveDatabaseInfo<Part>(qm);
+                result = data.ToQueryPageModel();
+
                 navigationParam.Add(nameof(List<Part>), qm);
-                result = (await RebrickableApiWrapper.RetrieveDatabaseInfo<Part>(qm)).ToQueryPageModel();
-                navigationParam.Add(nameof(QueryType), QueryType.Part);
+                navigationParam.Add(nameof(data), data);
             }
             else if (SetRadioChecked)
             {
+                qt = QueryType.Set;
                 qm = UnparseSearchbarText(SearchbarText, QueryType.Set);
+                
+                var data = await RebrickableApiWrapper.RetrieveDatabaseInfo<Set>(qm);
+                result = data.ToQueryPageModel();
+
                 navigationParam.Add(nameof(List<Set>), qm);
-                result = (await RebrickableApiWrapper.RetrieveDatabaseInfo<Set>(qm)).ToQueryPageModel();
-                navigationParam.Add(nameof(QueryType), QueryType.Set);
+                navigationParam.Add(nameof(data), data);
             }
             else throw new Exception();
 
+            
             navigationParam.Add(nameof(QueryPageModel), result);
+            navigationParam.Add(nameof(QueryType), qt);
             await Shell.Current.GoToAsync(nameof(QueryPage), navigationParam);
         }
 

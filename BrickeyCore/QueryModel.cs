@@ -4,7 +4,7 @@
     {
         public enum QueryType
         {
-            MiniFigure,
+            Minifigure,
             Set,
             Part
         }

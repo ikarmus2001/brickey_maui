@@ -89,6 +89,18 @@ namespace BrickeyCore
             return minifiguresResponse ?? throw new HttpRequestException("");
         }
 
+        internal static async Task<PagedResponse<MinifigureParts>> GetMinifigureParts(string mfId)
+        {
+            var userRequest = $"lego/minifigs/{mfId}/parts";
+            string content = await GetData(userRequest);
+
+            PagedResponse<MinifigureParts>? minifiguresResponse = JsonSerializer.Deserialize<PagedResponse<MinifigureParts>>(content, new JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return minifiguresResponse ?? throw new HttpRequestException("");
+        }
+
         private static async Task<string> PostData(string userRequest, Dictionary<string, string> parameteres)
         {
             if (parameteres.Count <= 0)

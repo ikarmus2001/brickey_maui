@@ -66,5 +66,10 @@ namespace BrickeyCore
 
             return r ?? throw new Exception();
         }
+
+        public static async Task<PagedResponse<MinifigureParts>> GetMinifigureParts(string minifigId)
+        {
+            return await ManualApiCalls.GetMinifigureParts(minifigId) ?? throw new Exception();
+        }
     }
 }
