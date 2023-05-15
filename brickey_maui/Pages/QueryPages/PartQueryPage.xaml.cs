@@ -14,7 +14,6 @@ public partial class PartQueryPage : ContentPage, IQueryAttributable
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        var itemsType = (QueryType)query[nameof(QueryType)];
         var qpModel = (QueryPageModel)query[nameof(QueryPageModel)];
 
         var b = new PartQueryPageViewModel(qpModel)

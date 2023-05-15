@@ -40,5 +40,10 @@ public partial class MainPage : ContentPage
     {
         ((viewModel)BindingContext).SearchBtn_Clicked();
     }
+
+    private void Searchbar_OnCompleted(object sender, EventArgs e)
+    {
+        ((viewModel)BindingContext).SearchBtn_Clicked();
+    }
 }
 

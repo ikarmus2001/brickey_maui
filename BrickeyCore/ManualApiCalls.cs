@@ -91,7 +91,7 @@ namespace BrickeyCore
 
         internal static async Task<PagedResponse<MinifigureParts>> GetMinifigureParts(string mfId)
         {
-            var userRequest = $"lego/minifigs/{mfId}/parts";
+            var userRequest = $"lego/minifigs/{mfId}/parts/";
             string content = await GetData(userRequest);
 
             PagedResponse<MinifigureParts>? minifiguresResponse = JsonSerializer.Deserialize<PagedResponse<MinifigureParts>>(content, new JsonSerializerOptions()

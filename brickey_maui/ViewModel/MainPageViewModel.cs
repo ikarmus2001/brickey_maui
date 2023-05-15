@@ -28,7 +28,7 @@ namespace brickey_maui.ViewModel
             var username = await SecureStorage.Default.GetAsync(nameof(AppStoredDataModel.username));
             var password = await SecureStorage.Default.GetAsync(nameof(AppStoredDataModel.password));
             var apiKey = await SecureStorage.Default.GetAsync(nameof(AppStoredDataModel.apiKey));
-            if (username == null || password == null) 
+            if (username == "" || password == "") 
             {
                 await Shell.Current.GoToAsync(nameof(SetupRebrickablePage));
             }
@@ -43,7 +43,7 @@ namespace brickey_maui.ViewModel
         internal async void SearchBtn_Clicked()
         {
             QueryModel qm;
-            QueryPageModel result = new QueryPageModel();
+            QueryPageModel result;
             var navigationParam = new Dictionary<string, object>();
             if (MinifiguresRadioChecked)
             {

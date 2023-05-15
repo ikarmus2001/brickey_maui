@@ -18,19 +18,22 @@
               Grid.Row="1" 
               ColumnDefinitions="*, *, *" >
 
-            <RadioButton x:Name="SetRadio" 
-                         Grid.Column="0"
+            <RadioButton Grid.Column="0"
                          Content="Set"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
                          IsChecked="{Binding SetRadioChecked}"/>
 
-            <RadioButton x:Name="MinifiguresRadio"
-                         Grid.Column="1"
+            <RadioButton Grid.Column="1"
                          Content="Minifigures"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
                          IsChecked="{Binding MinifiguresRadioChecked}"/>
 
-            <RadioButton x:Name="PartRadio"
-                         Grid.Column="2"
+            <RadioButton Grid.Column="2"
                          Content="Parts"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
                          IsChecked="{Binding PartRadioChecked}"/>
 
         </Grid>
@@ -45,7 +48,8 @@
                     Text="{Binding SearchbarText}"
                     Grid.Row="1"
                     Placeholder="Here" 
-                    VerticalOptions="Center"/>
+                    VerticalOptions="Center"
+                    Completed="Searchbar_OnCompleted" />
 
             <ImageButton x:Name="SearchBtn"
                          Grid.Row="1"

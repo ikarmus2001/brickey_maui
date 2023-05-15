@@ -7,26 +7,35 @@ namespace brickey_maui.ViewModel.QueryDetails
 {
     internal partial class MinifigureDetailPageViewModel : ObservableObject
     {
-        [ObservableProperty]
-        ImageSource mainImage;
+        [ObservableProperty] private ImageSource mainImage;
 
-        [ObservableProperty]
-        ObservableCollection<Set> featuringSets;
+        [ObservableProperty] private string name;
 
-        [ObservableProperty]
-        ObservableCollection<MinifigureParts> partsUsed;
+        [ObservableProperty] private string id;
 
-        private MinifigureDetailPageViewModel(PagedResponse<MinifigureParts> x, Minifigure mf)
+        [ObservableProperty] private ObservableCollection<Set> featuringSets;
+
+        [ObservableProperty] private ObservableCollection<MinifigureParts> partsUsed;
+
+        PagedResponse<MinifigureParts> pagedParts;
+
+        private MinifigureDetailPageViewModel()
         {
-            mainImage = ImageSource.FromUri(new Uri(mf.imageURL));
-            partsUsed = new ObservableCollection<MinifigureParts>(x.results);
+            
         }
 
         internal static async Task<MinifigureDetailPageViewModel> Build(Minifigure mf)
         {
-            PagedResponse<MinifigureParts> x = await RebrickableApiWrapper.GetMinifigureParts(mf.Id);
+            var x = new MinifigureDetailPageViewModel()
+            {
+                name = mf.name,
+                id = mf.Id,
+                mainImage = ImageSource.FromUri(new Uri(mf.imageURL)),
+                pagedParts = await RebrickableApiWrapper.GetMinifigureParts(mf.Id)
+            };
 
-            return new MinifigureDetailPageViewModel(x, mf);
+            x.partsUsed = new ObservableCollection<MinifigureParts>(x.pagedParts.results);
+            return x;
         }
     }
 }

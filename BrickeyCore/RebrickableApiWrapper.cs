@@ -5,20 +5,20 @@ namespace BrickeyCore
 {
     public abstract class RebrickableApiWrapper
     {
-        internal static string baseApiUrl = "https://rebrickable.com/api/v3/";
+        private static string baseApiUrl = "https://rebrickable.com/api/v3/";
         internal static HttpClient _httpClient;
-        internal static string apiKey;
+        private static string _apiKey;
         internal static string userToken;
 
-        public static async Task<bool> Setup(string apiKey, string username, string password)
+        public static async Task<bool> Setup(string rebrickableApiKey, string username, string password)
         {
-            RebrickableApiWrapper.apiKey = apiKey;
+            RebrickableApiWrapper._apiKey = rebrickableApiKey;
 
             _httpClient = new HttpClient()
             {
                 BaseAddress = new Uri(baseApiUrl)
             };
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("key", apiKey);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("key", _apiKey);
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             userToken = await ManualApiCalls.GetUserToken(username, password);
@@ -48,21 +48,13 @@ namespace BrickeyCore
 
         public static async Task<PagedResponse<T>> RetrieveDatabaseInfo<T>(QueryModel qm)
         {
-            PagedResponse<T> r = null;
-            switch (typeof(T))
+            PagedResponse<T> r = typeof(T) switch
             {
-                case Type mf when mf == typeof(Minifigure):
-                    r = (dynamic)await GetMinifigures(qm.parameters["search"]);
-                    break;
-                case Type set when set == typeof(Set):
-                    r = (dynamic)await GetSets(qm.parameters["search"]);
-                    break;
-                case Type part when part == typeof(Part):
-                    r = (dynamic)await GetParts(qm.parameters["search"]);
-                    break;
-
-            }
-
+                Type mf when mf == typeof(Minifigure) => await GetMinifigures(qm.parameters["search"]),
+                Type set when set == typeof(Set) => await GetSets(qm.parameters["search"]),
+                Type part when part == typeof(Part) => (dynamic)await GetParts(qm.parameters["search"]),
+                _ => null
+            } ?? throw new InvalidOperationException();
 
             return r ?? throw new Exception();
         }

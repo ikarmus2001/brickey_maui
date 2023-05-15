@@ -10,5 +10,6 @@
         }
 
         public QueryType queryType;
-        public Dictionary<string, string> parameters;}
+        public Dictionary<string, string> parameters;
+    }
 }
