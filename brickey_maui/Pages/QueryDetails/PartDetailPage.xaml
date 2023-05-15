@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="brickey_maui.Pages.MinifigureDetailPage"
-             xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel"
-             x:DataType="viewmodel:MinifigureDetailPageViewModel"
+             x:Class="brickey_maui.Pages.QueryDetails.PartDetailPage"
+             xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel.QueryDetails"
+             x:DataType="viewmodel:PartDetailPageViewModel"
              xmlns:model="clr-namespace:brickey_maui.Models"
              xmlns:parts="clr-namespace:BrickeyCore.RebrickableModel;assembly=BrickeyCore"
-             Title="MinifigureDetailPage">
+             Title="PartDetailPage">
 
             
     <VerticalStackLayout>
@@ -15,7 +15,7 @@
 
         
         <!--Parts-->
-        <HorizontalStackLayout>
+        <!--<HorizontalStackLayout>
             <CollectionView ItemsSource="{Binding PartsUsed}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="parts:Part">
@@ -28,7 +28,7 @@
                 
             </CollectionView>
             
-        </HorizontalStackLayout>
+        </HorizontalStackLayout>-->
 
         <!--Features in sets-->
         <!--<HorizontalStackLayout>

@@ -1,5 +1,6 @@
 ﻿using brickey_maui.Models;
 using brickey_maui.Pages;
+using brickey_maui.Pages.QueryPages;
 using BrickeyCore;
 using BrickeyCore.RebrickableModel;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -31,19 +32,21 @@ namespace brickey_maui.ViewModel
             {
                 await Shell.Current.GoToAsync(nameof(SetupRebrickablePage));
             }
-            // TODO can be improved
+            // TODO: can be improved
             await RebrickableApiWrapper.Setup(apiKey, username, password);
         }
 
+        /// <summary>
+        /// TODO: Refactor
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         internal async void SearchBtn_Clicked()
         {
             QueryModel qm;
             QueryPageModel result = new QueryPageModel();
-            QueryType qt;
             var navigationParam = new Dictionary<string, object>();
             if (MinifiguresRadioChecked)
             {
-                qt = QueryType.Minifigure;
                 qm = UnparseSearchbarText(SearchbarText, QueryType.Minifigure);
 
                 var data = await RebrickableApiWrapper.RetrieveDatabaseInfo<Minifigure>(qm);
@@ -51,10 +54,12 @@ namespace brickey_maui.ViewModel
 
                 navigationParam.Add(nameof(List<Minifigure>), qm);
                 navigationParam.Add(nameof(data), data);
+
+                navigationParam.Add(nameof(QueryPageModel), result);
+                await Shell.Current.GoToAsync(nameof(MinifigureQueryPage), navigationParam);
             }
             else if (PartRadioChecked)
             {
-                qt = QueryType.Part;
                 qm = UnparseSearchbarText(SearchbarText, QueryType.Part);
 
                 var data = await RebrickableApiWrapper.RetrieveDatabaseInfo<Part>(qm);
@@ -62,10 +67,12 @@ namespace brickey_maui.ViewModel
 
                 navigationParam.Add(nameof(List<Part>), qm);
                 navigationParam.Add(nameof(data), data);
+
+                navigationParam.Add(nameof(QueryPageModel), result);
+                await Shell.Current.GoToAsync(nameof(PartQueryPage), navigationParam);
             }
             else if (SetRadioChecked)
             {
-                qt = QueryType.Set;
                 qm = UnparseSearchbarText(SearchbarText, QueryType.Set);
                 
                 var data = await RebrickableApiWrapper.RetrieveDatabaseInfo<Set>(qm);
@@ -73,13 +80,11 @@ namespace brickey_maui.ViewModel
 
                 navigationParam.Add(nameof(List<Set>), qm);
                 navigationParam.Add(nameof(data), data);
+
+                navigationParam.Add(nameof(QueryPageModel), result);
+                await Shell.Current.GoToAsync(nameof(SetQueryPage), navigationParam);
             }
             else throw new Exception();
-
-            
-            navigationParam.Add(nameof(QueryPageModel), result);
-            navigationParam.Add(nameof(QueryType), qt);
-            await Shell.Current.GoToAsync(nameof(QueryPage), navigationParam);
         }
 
         public static async void MyProfileBtn_Clicked()

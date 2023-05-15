@@ -3,7 +3,7 @@ using BrickeyCore.RebrickableModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 
-namespace brickey_maui.ViewModel
+namespace brickey_maui.ViewModel.QueryDetails
 {
     internal partial class MinifigureDetailPageViewModel : ObservableObject
     {

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="brickey_maui.Pages.QueryDetails.SetDetailPage"
+             xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel.QueryDetails"
+             x:DataType="viewmodel:SetDetailPageViewModel"
+             xmlns:model="clr-namespace:brickey_maui.Models"
+             xmlns:parts="clr-namespace:BrickeyCore.RebrickableModel;assembly=BrickeyCore"
+             Title="SetDetailPage">
+
+            
+    <VerticalStackLayout>
+        <Image x:Name="mfImage"
+               Source="{Binding MainImage}"/>
+
+        
+        <!--Parts-->
+        <!--<HorizontalStackLayout>
+            <CollectionView ItemsSource="{Binding PartsUsed}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="parts:Part">
+                        <Grid >
+                            <Image Source="{Binding imageURL}" />
+                            <Label Text="{Binding name}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+            
+        </HorizontalStackLayout>-->
+
+        <!--Features in sets-->
+        <!--<HorizontalStackLayout>
+            <Grid >
+                
+            </Grid>
+        </HorizontalStackLayout>-->
+    </VerticalStackLayout>
+</ContentPage>

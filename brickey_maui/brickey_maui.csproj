@@ -71,16 +71,43 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Pages\QueryDetails\PartDetailPage.xaml.cs">
+		  <DependentUpon>PartDetailPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\QueryDetails\SetDetailPage.xaml.cs">
+		  <DependentUpon>SetDetailPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\QueryPages\SetQueryPage.xaml.cs">
+		  <DependentUpon>SetQueryPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\QueryPages\PartQueryPage.xaml.cs">
+		  <DependentUpon>PartQueryPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\QueryPages\MinifigureQueryPage.xaml.cs">
+		  <DependentUpon>MinifigureQueryPage.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Pages\SetupRebrickablePage.xaml.cs">
 			<DependentUpon>SetupRebrickablePage.xaml</DependentUpon>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiXaml Update="Pages\MinifigureDetailPage.xaml">
+		<MauiXaml Update="Pages\QueryDetails\PartDetailPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Pages\QueryPage.xaml">
+		<MauiXaml Update="Pages\QueryDetails\SetDetailPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\QueryDetails\MinifigureDetailPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\QueryPages\SetQueryPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\QueryPages\PartQueryPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\QueryPages\MinifigureQueryPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Pages\SetupRebrickablePage.xaml">

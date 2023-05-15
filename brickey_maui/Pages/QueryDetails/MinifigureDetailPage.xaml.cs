@@ -1,7 +1,7 @@
-using brickey_maui.ViewModel;
+using brickey_maui.ViewModel.QueryDetails;
 using BrickeyCore.RebrickableModel;
 
-namespace brickey_maui.Pages;
+namespace brickey_maui.Pages.QueryDetails;
 
 public partial class MinifigureDetailPage : ContentPage, IQueryAttributable
 {

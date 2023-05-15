@@ -23,7 +23,7 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
         builder.Services.AddSingleton<MainPage>();
-        builder.Services.AddTransient<QueryPage>();
+        //builder.Services.AddTransient<QueryPage>();
 		return builder.Build();
 	}
 
