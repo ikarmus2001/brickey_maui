@@ -17,11 +17,11 @@ public partial class SetupRebrickablePage : ContentPage
         MauiProgram.SaveUserLoginData(UsernameEntry.Text, PasswordEntry.Text, ApiKeyEntry.Text);
         if (await RebrickableApiWrapper.Setup(ApiKeyEntry.Text, UsernameEntry.Text, PasswordEntry.Text))
         {
-            await Shell.Current.GoToAsync(nameof(MainPage));
+            await Shell.Current.GoToAsync("..");
         }
         else
         {
-            var t = Toast.Make("Login failed, try again", ToastDuration.Short);
+            var t = Toast.Make("Login failed, try again");
             await t.Show();
         }
     }

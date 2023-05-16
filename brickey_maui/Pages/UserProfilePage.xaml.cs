@@ -24,4 +24,9 @@ public partial class UserProfilePage : ContentPage
             BindingContext = new UserProfileViewModel(value);
         }
     }
+
+    private async void Button_OnClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(SetupRebrickablePage));
+    }
 }

@@ -7,7 +7,7 @@
              Title="MainPage"
              Loaded="MainPageVM_Loaded">
 
-    <Grid RowDefinitions="3*, auto, auto, 3*"
+    <Grid RowDefinitions="1.5*, auto, auto, 3*"
           ColumnDefinitions="*, 5*, *">
 
         <Image Grid.Column="1"  Grid.Row="0" 
@@ -22,59 +22,55 @@
                          Content="Set"
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
+                         FontSize="{OnPlatform iOS=12, Android=13, WinUI=18}"
                          IsChecked="{Binding SetRadioChecked}"/>
 
             <RadioButton Grid.Column="1"
-                         Content="Minifigures"
+                         Content="Minifigure"
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
+                         FontSize="{OnPlatform iOS=12, Android=13, WinUI=18}"
                          IsChecked="{Binding MinifiguresRadioChecked}"/>
 
             <RadioButton Grid.Column="2"
-                         Content="Parts"
+                         Content="Part"
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
+                         FontSize="{OnPlatform iOS=12, Android=13, WinUI=18}"
                          IsChecked="{Binding PartRadioChecked}"/>
 
         </Grid>
 
-        <Grid x:Name="SearchBarGrid" 
-              Grid.ColumnSpan="20" 
+        <Grid Grid.ColumnSpan="20" 
               Grid.Row="2" 
               ColumnDefinitions="10*, *" 
               BackgroundColor="Transparent">
 
-            <Entry  x:Name="Searchbar"
-                    Text="{Binding SearchbarText}"
-                    Grid.Row="1"
+            <Entry  Text="{Binding SearchbarText}"
                     Placeholder="Here" 
                     VerticalOptions="Center"
                     Completed="Searchbar_OnCompleted" />
 
-            <ImageButton x:Name="SearchBtn"
-                         Grid.Row="1"
-                         Grid.Column="1"
+            <ImageButton Grid.Column="1"
                          Source="magnifying_glass_icon.png"
                          Clicked="SearchBtn_Clicked"/>
 
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="3" ColumnDefinitions="*"  RowDefinitions="*, *, *" >
-            <Button x:Name="MyProfileBtn"
-                Grid.Row="0"
-                Text="My profile"
-                Clicked="MyProfileBtn_Clicked"/>
+            <Button Grid.Row="0"
+                    Text="My profile"
+                    Clicked="MyProfileBtn_Clicked"/>
 
-            <Button x:Name="CollectionBtn"
-                Grid.Row="1"
-                Text="Collection"
-                Clicked="CollectionBtn_Clicked"
-                SemanticProperties.Hint="SemanticHint"/>
+            <Button Grid.Row="1"
+                    Text="Collection"
+                    Clicked="CollectionBtn_Clicked"
+                    SemanticProperties.Hint="SemanticHint"/>
 
             <Button x:Name="SearchHistoryBtn"
-                Grid.Row="2"
-                Text="Search history"
-                Clicked="SearchHistoryBtn_Clicked"/>
+                    Grid.Row="2"
+                    Text="Search history"
+                    Clicked="SearchHistoryBtn_Clicked"/>
 
         </Grid>
     </Grid>

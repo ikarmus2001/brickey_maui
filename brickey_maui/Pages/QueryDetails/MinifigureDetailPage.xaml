@@ -12,31 +12,35 @@
     <ScrollView>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" 
+            <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0"  Grid.ColumnSpan="3"
                    Source="{Binding MainImage}" 
-                   Aspect="AspectFit" />
+                   Aspect="AspectFit" 
+                   />
 
-            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" 
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Name}" 
                    FontSize="28"/>
-            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Id}" />
+            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Id}" />
 
             <CollectionView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
-                            ItemsSource="{Binding PartsUsed}">
+                            ItemsSource="{Binding PartsUsed}"
+                            SelectionMode="Single"
+                            SelectionChanged="SelectableItemsView_OnSelectionChanged" >
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="parts:MinifigureParts">
+                    <DataTemplate x:DataType="parts:PartOfSet">
                         <Grid>
+                            <Image Source="{Binding part.imageURL}" /> 
                             <Label Text="{Binding element_id}" />
                         </Grid>
                     </DataTemplate>

@@ -10,6 +10,6 @@
         public object location { get; set; }
         public Rewards rewards { get; set; }
         public Lego lego { get; set; }
-        public object avatar_img { get; set; }
+        public string avatar_img { get; set; }
     }
 }

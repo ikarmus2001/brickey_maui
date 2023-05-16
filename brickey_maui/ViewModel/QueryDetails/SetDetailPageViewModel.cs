@@ -14,20 +14,23 @@ namespace brickey_maui.ViewModel.QueryDetails
         //ObservableCollection<Set> featuringSets;
 
         //[ObservableProperty]
-        //ObservableCollection<MinifigureParts> partsUsed;
+        //ObservableCollection<PartOfSet> partsUsed;
 
-        private SetDetailPageViewModel(PagedResponse<MinifigureParts> x, Minifigure mf)
+        private SetDetailPageViewModel(Set set, List<PartOfSet> includedPartOfSet)
         {
-            mainImage = ImageSource.FromUri(new Uri(mf.imageURL));
-            //partsUsed = new ObservableCollection<MinifigureParts>(x.results);
+            //mainImage = ImageSource.FromUri(new Uri(mf.imageURL));
+            //partsUsed = new ObservableCollection<PartOfSet>(x.results);
         }
 
-        internal static async Task<SetDetailPageViewModel> Build(Minifigure mf)
+        internal static async Task<SetDetailPageViewModel> Build(Set set)
         {
-            throw new NotImplementedException();
-            //PagedResponse<MinifigureParts> x = await RebrickableApiWrapper.GetMinifigureParts(mf.Id);
 
-            //return new SetDetailPageViewModel(x, mf);
+            PagedResponse<PartOfSet> x = await RebrickableApiWrapper.GetSetsParts(set.Id);
+
+            return new SetDetailPageViewModel(set, x.results);
         }
     }
 }
+
+
+

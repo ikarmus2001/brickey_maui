@@ -7,27 +7,26 @@ namespace brickey_maui.ViewModel.QueryDetails
 {
     internal partial class PartDetailPageViewModel : ObservableObject
     {
-        [ObservableProperty]
-        ImageSource mainImage;
+        [ObservableProperty] ImageSource mainImage;
+        [ObservableProperty] PartDetails partDetails;
+        [ObservableProperty] ObservableCollection<Set> featuringSets;
 
-        //[ObservableProperty]
-        //ObservableCollection<Set> featuringSets;
-
-        //[ObservableProperty]
-        //ObservableCollection<MinifigureParts> partsUsed;
-
-        //private PartDetailPageViewModel(PagedResponse<> x, Minifigure mf)
-        //{
-        //    mainImage = ImageSource.FromUri(new Uri(mf.imageURL));
-        //    //partsUsed = new ObservableCollection<MinifigureParts>(x.results);
-        //}
+        private PartDetailPageViewModel(PartDetails pd, ObservableCollection<Set> featSets)
+        {
+            mainImage = ImageSource.FromUri(new Uri(pd.imageURL));
+            featuringSets = featSets;
+            //partsUsed = new ObservableCollection<PartOfSet>(x.results);
+        }
 
         internal static async Task<PartDetailPageViewModel> Build(Part part)
         {
-            throw new NotImplementedException();
-            //PagedResponse<MinifigureParts> x = await RebrickableApiWrapper.GetMinifigureParts(part.Id);
+            ObservableCollection<Set> featuringSets = null;
+            PartDetails pd = await RebrickableApiWrapper.GetPartDetails(part.Id);
 
-            //return new MinifigureDetailPageViewModel(x, part);
+            //if (pd.external_ids.Brickset. > 0)
+            //    featuringSets = new ObservableCollection<Set>(await RebrickableApiWrapper.GetSetsDetails(pd.external_ids.Brickset));
+
+            return new PartDetailPageViewModel(pd, featuringSets);
         }
     }
 }

@@ -8,11 +8,7 @@
              Title="QueryPage">
 
     <ScrollView >
-        <CollectionView x:Name="StatsCollectionView" 
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="20"
-                        ItemsSource="{Binding QueryElements}"
+        <CollectionView ItemsSource="{Binding QueryElements}"
                         SelectionMode="Single"
                         SelectionChanged="StatsCollectionView_SelectionChanged"
                         >

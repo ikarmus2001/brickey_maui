@@ -15,11 +15,11 @@ namespace brickey_maui.ViewModel
         string email;
 
         [ObservableProperty]
-        Image profilePicture;
+        ImageSource profilePicture;
 
         public UserProfileViewModel(UserProfile profile)
         {
-            profilePicture = (Image)profile.avatar_img;
+            profilePicture = ImageSource.FromUri(new Uri(profile.avatar_img));
             userId = profile.user_id;
             email = profile.email;
             username = profile.username;

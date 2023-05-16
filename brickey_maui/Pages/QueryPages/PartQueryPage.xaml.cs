@@ -25,8 +25,7 @@ public partial class PartQueryPage : ContentPage, IQueryAttributable
 
     private void StatsCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        throw new NotImplementedException();
-        //var x = e.CurrentSelection.FirstOrDefault() as QueryElement;
-        //((PartQueryPageViewModel)BindingContext).ItemClicked(x.id);
+        var x = e.CurrentSelection.FirstOrDefault() as QueryElement;
+        ((PartQueryPageViewModel)BindingContext).ItemClicked(x.id);
     }
 }

@@ -89,16 +89,71 @@ namespace BrickeyCore
             return minifiguresResponse ?? throw new HttpRequestException("");
         }
 
-        internal static async Task<PagedResponse<MinifigureParts>> GetMinifigureParts(string mfId)
+        /// <summary>
+        /// TODO: Fix deserializing - class issue?
+        /// </summary>
+        /// <param name="mfId"></param>
+        /// <returns></returns>
+        /// <exception cref="HttpRequestException"></exception>
+        internal static async Task<PagedResponse<PartOfSet>> GetMinifigureParts(string mfId)
         {
             var userRequest = $"lego/minifigs/{mfId}/parts/";
             string content = await GetData(userRequest);
 
-            PagedResponse<MinifigureParts>? minifiguresResponse = JsonSerializer.Deserialize<PagedResponse<MinifigureParts>>(content, new JsonSerializerOptions()
+            PagedResponse<PartOfSet>? minifiguresResponse = null;
+            try
+            {
+                minifiguresResponse = JsonSerializer.Deserialize<PagedResponse<PartOfSet>>(content, new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+            }
+            catch (JsonException)
+            {
+                
+            }
+            return minifiguresResponse ?? throw new HttpRequestException("");
+        }
+
+        internal static async Task<PartDetails> GetPartDetails(string partId)
+        {
+            var userRequest = $"lego/parts/{partId}/";
+            string content = await GetData(userRequest);
+
+            PartDetails? partResponse = JsonSerializer.Deserialize<PartDetails>(content, new JsonSerializerOptions()
             {
                 PropertyNameCaseInsensitive = true
             });
-            return minifiguresResponse ?? throw new HttpRequestException("");
+            return partResponse ?? throw new HttpRequestException("");
+        }
+
+        public static async Task<List<Set>> GetSetsDetails(string[] setIds)
+        {
+            string userRequest = $"lego/sets/";
+            List<Set> setsResponse = new();
+            foreach (string sId in setIds)
+            {
+                string content = await GetData($"{userRequest}/{sId}/");
+                Set? setResponse = JsonSerializer.Deserialize<Set>(content, new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                if (setResponse != null) setsResponse.Add(setResponse);
+            }
+            return setsResponse;
+        }
+
+        public static async Task<PagedResponse<PartOfSet>> GetSetsParts(string setId)
+        {
+            string userRequest = $"lego/sets/{setId}/parts/";
+            
+            string content = await GetData(userRequest);
+            PagedResponse<PartOfSet>? response = JsonSerializer.Deserialize<PagedResponse<PartOfSet>>(content, new JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return response ?? throw new HttpRequestException();
         }
 
         private static async Task<string> PostData(string userRequest, Dictionary<string, string> parameteres)
@@ -136,5 +191,6 @@ namespace BrickeyCore
             HttpResponseMessage response = await RebrickableApiWrapper._httpClient.GetAsync(userRequest);
             return await response.Content.ReadAsStringAsync();
         }
+        
     }
 }

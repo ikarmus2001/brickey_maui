@@ -15,4 +15,10 @@ public partial class MinifigureDetailPage : ContentPage, IQueryAttributable
         var b = await MinifigureDetailPageViewModel.Build((Minifigure)query["item"]);
         BindingContext = b;
     }
+
+    private async void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var x = e.CurrentSelection.FirstOrDefault() as PartOfSet;
+        await ((MinifigureDetailPageViewModel)BindingContext).PartClicked();
+    }
 }

@@ -2,6 +2,7 @@
 using BrickeyCore.RebrickableModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using brickey_maui.Pages.QueryDetails;
 
 namespace brickey_maui.ViewModel.QueryDetails
 {
@@ -15,9 +16,9 @@ namespace brickey_maui.ViewModel.QueryDetails
 
         [ObservableProperty] private ObservableCollection<Set> featuringSets;
 
-        [ObservableProperty] private ObservableCollection<MinifigureParts> partsUsed;
+        [ObservableProperty] private ObservableCollection<PartOfSet> partsUsed;
 
-        PagedResponse<MinifigureParts> pagedParts;
+        PagedResponse<PartOfSet> pagedParts;
 
         private MinifigureDetailPageViewModel()
         {
@@ -30,12 +31,17 @@ namespace brickey_maui.ViewModel.QueryDetails
             {
                 name = mf.name,
                 id = mf.Id,
-                mainImage = ImageSource.FromUri(new Uri(mf.imageURL)),
+                mainImage = ImageSource.FromUri(new Uri(mf.imageURL ?? "https://cdn-icons-png.flaticon.com/512/1548/1548682.png")),
                 pagedParts = await RebrickableApiWrapper.GetMinifigureParts(mf.Id)
             };
 
-            x.partsUsed = new ObservableCollection<MinifigureParts>(x.pagedParts.results);
+            x.partsUsed = new ObservableCollection<PartOfSet>(x.pagedParts.results);
             return x;
+        }
+
+        public async Task PartClicked()
+        {
+            await Shell.Current.GoToAsync(nameof(PartDetailPage));
         }
     }
 }

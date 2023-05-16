@@ -25,7 +25,7 @@ public partial class MinifigureQueryPage : ContentPage, IQueryAttributable
 
     private void StatsCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var x = e.CurrentSelection.FirstOrDefault() as QueryElement;
-        ((MinifigureQueryPageViewModel)BindingContext).ItemClicked(x.id);
+        var chosenMinifigure = (QueryElement)e.CurrentSelection.FirstOrDefault();
+        ((MinifigureQueryPageViewModel)BindingContext).ItemClicked(chosenMinifigure.id);
     }
 }

@@ -5,26 +5,28 @@
              xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel"
              x:DataType="viewmodel:UserProfileViewModel"
              Title="UserProfilePage">
-    
-    <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, 2*">
-
-        <Image x:Name="ProfilePictureBox" 
+    <Grid RowDefinitions="4*, *, *, *, *" ColumnDefinitions="*">
+        
+        <Image Grid.Row="0"
                Source="{Binding ProfilePicture}"/>
 
-        <Label Grid.Row="0" x:Name="usernameLbl"
+        <Label Grid.Row="1" x:Name="usernameLbl"
             Text="{Binding Username}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         
-        <Label Grid.Row="1"
+        <Label Grid.Row="2"
                x:Name="userIdLbl"
                Text="{Binding UserId}" 
                VerticalOptions="Center" 
             HorizontalOptions="Center"/>
         
-        <Label Grid.Row="2" x:Name="emailLbl"
+        <Label Grid.Row="3" x:Name="emailLbl"
                Text="{Binding Email}"
                VerticalOptions="Center" 
             HorizontalOptions="Center"/>
+
+        <Button Grid.Row="4" Text="Change credentials" 
+                Clicked="Button_OnClicked"/>
     </Grid>
 </ContentPage>

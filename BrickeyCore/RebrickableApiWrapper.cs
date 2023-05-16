@@ -1,4 +1,5 @@
-﻿using BrickeyCore.RebrickableModel;
+﻿using System.Collections.ObjectModel;
+using BrickeyCore.RebrickableModel;
 using System.Net.Http.Headers;
 
 namespace BrickeyCore
@@ -25,27 +26,40 @@ namespace BrickeyCore
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static async Task<UserProfile> GetUserProfile()
         {
             UserProfile? up = await ManualApiCalls.GetUserProfile();
             return up ?? throw new Exception();
         }
 
-        internal async static Task<PagedResponse<Minifigure>> GetMinifigures(string searchQuery)
+        private static async Task<PagedResponse<Minifigure>> GetMinifigures(string searchQuery)
         {
             return await ManualApiCalls.GetMinifigures(searchQuery);
         }
 
-        internal async static Task<PagedResponse<Set>> GetSets(string searchQuery)
+        private static async Task<PagedResponse<Set>> GetSets(string searchQuery)
         {
             return await ManualApiCalls.GetSets(searchQuery);
         }
 
-        internal async static Task<PagedResponse<Part>> GetParts(string searchQuery)
+        private static async Task<PagedResponse<Part>> GetParts(string searchQuery)
         {
             return await ManualApiCalls.GetParts(searchQuery);
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="qm"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="Exception"></exception>
         public static async Task<PagedResponse<T>> RetrieveDatabaseInfo<T>(QueryModel qm)
         {
             PagedResponse<T> r = typeof(T) switch
@@ -59,9 +73,24 @@ namespace BrickeyCore
             return r ?? throw new Exception();
         }
 
-        public static async Task<PagedResponse<MinifigureParts>> GetMinifigureParts(string minifigId)
+        public static async Task<PagedResponse<PartOfSet>> GetMinifigureParts(string minifigId)
         {
             return await ManualApiCalls.GetMinifigureParts(minifigId) ?? throw new Exception();
+        }
+
+        public static async Task<PartDetails> GetPartDetails(string partId)
+        {
+            return await ManualApiCalls.GetPartDetails(partId);
+        }
+
+        public static async Task<List<Set>> GetSetsDetails(string[] setIds)
+        {
+            return await ManualApiCalls.GetSetsDetails(setIds);
+        }
+
+        public static async Task<PagedResponse<PartOfSet>> GetSetsParts(string setId)
+        {
+            return await ManualApiCalls.GetSetsParts(setId);
         }
     }
 }
