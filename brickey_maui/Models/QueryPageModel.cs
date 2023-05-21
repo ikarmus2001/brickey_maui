@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace brickey_maui.Models
+﻿namespace brickey_maui.Models
 {
     internal class QueryPageModel
     {
@@ -9,4 +8,3 @@ namespace brickey_maui.Models
         internal string? previous;
     }
 }
-#nullable disable
