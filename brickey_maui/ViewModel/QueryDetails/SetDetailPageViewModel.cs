@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace brickey_maui.ViewModel.QueryDetails
 {
-    internal partial class SetDetailPageViewModel : ObservableObject
+    public partial class SetDetailPageViewModel : ObservableObject
     {
         [ObservableProperty]
         ImageSource mainImage;
@@ -22,7 +22,7 @@ namespace brickey_maui.ViewModel.QueryDetails
             //partsUsed = new ObservableCollection<PartOfSet>(x.results);
         }
 
-        internal static async Task<SetDetailPageViewModel> Build(Set set)
+        public static async Task<SetDetailPageViewModel> Build(Set set)
         {
 
             PagedResponse<PartOfSet> x = await RebrickableApiWrapper.GetSetsParts(set.Id);

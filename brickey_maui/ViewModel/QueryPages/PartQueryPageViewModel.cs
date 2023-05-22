@@ -8,19 +8,19 @@ using static BrickeyCore.QueryModel;
 
 namespace brickey_maui.ViewModel.QueryPages
 {
-    internal partial class PartQueryPageViewModel : ObservableObject
+    public partial class PartQueryPageViewModel : ObservableObject
     {
         [ObservableProperty]
         ObservableCollection<QueryElement> queryElements;
 
-        internal List<Part> cachedItems;
+        public List<Part> cachedItems;
         
-        internal PartQueryPageViewModel(QueryPageModel query)
+        public PartQueryPageViewModel(QueryPageModel query)
         {
             queryElements = new ObservableCollection<QueryElement>(query.queryElements);
         }
 
-        internal async void ItemClicked(string itemId)
+        public async void ItemClicked(string itemId)
         {
             var parameters = new Dictionary<string, object>();
             var item = cachedItems.FirstOrDefault(elem => elem.Id == itemId);

@@ -6,7 +6,7 @@ using brickey_maui.Pages.QueryDetails;
 
 namespace brickey_maui.ViewModel.QueryDetails
 {
-    internal partial class MinifigureDetailPageViewModel : ObservableObject
+    public partial class MinifigureDetailPageViewModel : ObservableObject
     {
         [ObservableProperty] private ImageSource mainImage;
 
@@ -25,7 +25,7 @@ namespace brickey_maui.ViewModel.QueryDetails
             
         }
 
-        internal static async Task<MinifigureDetailPageViewModel> Build(Minifigure mf)
+        public static async Task<MinifigureDetailPageViewModel> Build(Minifigure mf)
         {
             var x = new MinifigureDetailPageViewModel()
             {

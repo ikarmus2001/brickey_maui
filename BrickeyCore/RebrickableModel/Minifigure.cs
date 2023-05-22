@@ -4,21 +4,21 @@ namespace BrickeyCore.RebrickableModel
 {
     public class Minifigure
     {
-        public string name { get; set; }
+        public required string name { get; set; }
 
         [JsonPropertyName("set_num")]
-        public string Id { get; set; }
+        public required string Id { get; set; }
 
         [JsonPropertyName("num_parts")]
-        public int partsCount { get; set; }
+        public required int partsCount { get; set; }
 
         [JsonPropertyName("set_img_url")]
-        public string imageURL { get; set; }
+        public string? imageURL { get; set; }
 
         [JsonPropertyName("set_url")]
-        public string rebrickableURL { get; set; }
+        public required string rebrickableURL { get; set; }
 
-        public DateTime last_modified_dt { get; set; }
+        public required DateTime last_modified_dt { get; set; }
     }
 }
 
