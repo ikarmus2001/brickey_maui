@@ -14,54 +14,16 @@ namespace BrickeyCore.RebrickableModel
 
         [JsonPropertyName("part_img_url")]
         public string imageURL { get; set; }
-        public External_Ids external_ids { get; set; }
+        public PartExternal_Ids external_ids { get; set; }
         public string print_of { get; set; }
     }
 
 
-    public class External_Ids
+    public class PartExternal_Ids
     {
-        public Brickset Brickset { get; set; }
-        public Bricklink BrickLink { get; set; }
-        public Brickowl BrickOwl { get; set; }
-        public LEGO LEGO { get; set; }
-        public Peeron Peeron { get; set; }
-        public Ldraw LDraw { get; set; }
-    }
-
-    public class Brickset
-    {
-        public int[] ext_ids { get; set; }
-        public string[][] ext_descrs { get; set; }
-    }
-
-    public class Bricklink
-    {
-        public int[] ext_ids { get; set; }
-        public string[][] ext_descrs { get; set; }
-    }
-
-    public class Brickowl
-    {
-        public int[] ext_ids { get; set; }
-        public string[][] ext_descrs { get; set; }
-    }
-
-    public class LEGO
-    {
-        public int[] ext_ids { get; set; }
-        public string[][] ext_descrs { get; set; }
-    }
-
-    public class Peeron
-    {
-        public object[] ext_ids { get; set; }
-        public string[][] ext_descrs { get; set; }
-    }
-
-    public class Ldraw
-    {
-        public int[] ext_ids { get; set; }
-        public string[][] ext_descrs { get; set; }
+        public string[] Brickset { get; set; }
+        public string[] BrickLink { get; set; }
+        public string[] BrickOwl { get; set; }
+        public string[] LEGO { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using brickey_maui.Pages.QueryDetails;
 
 namespace brickey_maui.ViewModel.QueryDetails
 {
-    internal partial class MinifigureDetailPageViewModel : ObservableObject
+    public partial class MinifigureDetailPageViewModel : ObservableObject
     {
         [ObservableProperty] private ImageSource mainImage;
 
@@ -25,17 +25,17 @@ namespace brickey_maui.ViewModel.QueryDetails
             
         }
 
-        internal static async Task<MinifigureDetailPageViewModel> Build(Minifigure mf)
+        public static async Task<MinifigureDetailPageViewModel> Build(Minifigure mf)
         {
             var x = new MinifigureDetailPageViewModel()
             {
-                name = mf.name,
-                id = mf.Id,
-                mainImage = ImageSource.FromUri(new Uri(mf.imageURL ?? "https://cdn-icons-png.flaticon.com/512/1548/1548682.png")),
-                pagedParts = await RebrickableApiWrapper.GetMinifigureParts(mf.Id)
+                Name = mf.name,
+                Id = mf.Id,
+                MainImage = ImageSource.FromUri(new Uri(mf.imageURL ?? "https://cdn-icons-png.flaticon.com/512/1548/1548682.png"))
             };
+            x.pagedParts = await RebrickableApiWrapper.GetMinifigureParts(mf.Id);
 
-            x.partsUsed = new ObservableCollection<PartOfSet>(x.pagedParts.results);
+            x.PartsUsed = new ObservableCollection<PartOfSet>(x.pagedParts.results);
             return x;
         }
 

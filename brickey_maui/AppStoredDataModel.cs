@@ -1,9 +1,9 @@
 ﻿namespace brickey_maui
 {
-    internal class AppStoredDataModel
+    public class AppStoredDataModel
     {
-        internal string username;
-        internal string password;
-        internal string apiKey;
+        public string username;
+        public string password;
+        public string apiKey;
     }
 }

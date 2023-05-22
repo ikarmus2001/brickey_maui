@@ -89,12 +89,6 @@ namespace BrickeyCore
             return minifiguresResponse ?? throw new HttpRequestException("");
         }
 
-        /// <summary>
-        /// TODO: Fix deserializing - class issue?
-        /// </summary>
-        /// <param name="mfId"></param>
-        /// <returns></returns>
-        /// <exception cref="HttpRequestException"></exception>
         internal static async Task<PagedResponse<PartOfSet>> GetMinifigureParts(string mfId)
         {
             var userRequest = $"lego/minifigs/{mfId}/parts/";
@@ -110,7 +104,7 @@ namespace BrickeyCore
             }
             catch (JsonException)
             {
-                
+
             }
             return minifiguresResponse ?? throw new HttpRequestException("");
         }
@@ -147,7 +141,7 @@ namespace BrickeyCore
         public static async Task<PagedResponse<PartOfSet>> GetSetsParts(string setId)
         {
             string userRequest = $"lego/sets/{setId}/parts/";
-            
+
             string content = await GetData(userRequest);
             PagedResponse<PartOfSet>? response = JsonSerializer.Deserialize<PagedResponse<PartOfSet>>(content, new JsonSerializerOptions()
             {
@@ -191,6 +185,6 @@ namespace BrickeyCore
             HttpResponseMessage response = await RebrickableApiWrapper._httpClient.GetAsync(userRequest);
             return await response.Content.ReadAsStringAsync();
         }
-        
+
     }
 }

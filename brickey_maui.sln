@@ -3,26 +3,48 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "brickey_maui", "brickey_maui/brickey_maui.csproj", "{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "brickey_maui", "brickey_maui\brickey_maui.csproj", "{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrickeyCore", "BrickeyCore\BrickeyCore.csproj", "{8252B862-1178-47BC-9787-4B59E8E850EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrickeyCore", "BrickeyCore\BrickeyCore.csproj", "{8252B862-1178-47BC-9787-4B59E8E850EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAUIxUnitTest", "MAUIxUnitTest\MAUIxUnitTest.csproj", "{ED3CAFAE-94EF-4AC6-ABC1-1B42B3C73F27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		DebugTest|Any CPU = DebugTest|Any CPU
 		Release|Any CPU = Release|Any CPU
+		RELEASETEST|Any CPU = RELEASETEST|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.DebugTest|Any CPU.ActiveCfg = DebugTest|Any CPU
+		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.DebugTest|Any CPU.Build.0 = DebugTest|Any CPU
+		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.DebugTest|Any CPU.Deploy.0 = DebugTest|Any CPU
 		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.Release|Any CPU.Build.0 = Release|Any CPU
 		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.RELEASETEST|Any CPU.ActiveCfg = RELEASETEST|Any CPU
+		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.RELEASETEST|Any CPU.Build.0 = RELEASETEST|Any CPU
+		{680368F1-3C2E-4AF1-B8F7-4F1905DE3224}.RELEASETEST|Any CPU.Deploy.0 = RELEASETEST|Any CPU
 		{8252B862-1178-47BC-9787-4B59E8E850EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8252B862-1178-47BC-9787-4B59E8E850EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8252B862-1178-47BC-9787-4B59E8E850EF}.DebugTest|Any CPU.ActiveCfg = DebugTest|Any CPU
+		{8252B862-1178-47BC-9787-4B59E8E850EF}.DebugTest|Any CPU.Build.0 = DebugTest|Any CPU
 		{8252B862-1178-47BC-9787-4B59E8E850EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8252B862-1178-47BC-9787-4B59E8E850EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8252B862-1178-47BC-9787-4B59E8E850EF}.RELEASETEST|Any CPU.ActiveCfg = RELEASETEST|Any CPU
+		{8252B862-1178-47BC-9787-4B59E8E850EF}.RELEASETEST|Any CPU.Build.0 = RELEASETEST|Any CPU
+		{ED3CAFAE-94EF-4AC6-ABC1-1B42B3C73F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED3CAFAE-94EF-4AC6-ABC1-1B42B3C73F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED3CAFAE-94EF-4AC6-ABC1-1B42B3C73F27}.DebugTest|Any CPU.ActiveCfg = DebugTest|Any CPU
+		{ED3CAFAE-94EF-4AC6-ABC1-1B42B3C73F27}.DebugTest|Any CPU.Build.0 = DebugTest|Any CPU
+		{ED3CAFAE-94EF-4AC6-ABC1-1B42B3C73F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED3CAFAE-94EF-4AC6-ABC1-1B42B3C73F27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED3CAFAE-94EF-4AC6-ABC1-1B42B3C73F27}.RELEASETEST|Any CPU.ActiveCfg = RELEASETEST|Any CPU
+		{ED3CAFAE-94EF-4AC6-ABC1-1B42B3C73F27}.RELEASETEST|Any CPU.Build.0 = RELEASETEST|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

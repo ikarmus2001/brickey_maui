@@ -43,7 +43,7 @@ namespace brickey_maui.ViewModel
         /// TODO: Refactor
         /// </summary>
         /// <exception cref="System.Exception"></exception>
-        internal async void SearchBtn_Clicked()
+        public async void SearchBtn_Clicked()
         {
 
             QueryModel qm;
@@ -141,12 +141,12 @@ namespace brickey_maui.ViewModel
             await Shell.Current.GoToAsync(nameof(UserProfilePage), navigationParam);
         }
 
-        internal async static Task SearchHistoryBtn_Clicked()
+        public async static Task SearchHistoryBtn_Clicked()
         {
             
         }
 
-        internal static async Task CollectionBtn_Clicked()
+        public static async Task CollectionBtn_Clicked()
         {
 
         }

@@ -3,9 +3,9 @@ using BrickeyCore.RebrickableModel;
 
 namespace brickey_maui
 {
-    internal static class Extensions
+    public static class Extensions
     {
-        internal static QueryPageModel ToQueryPageModel(this PagedResponse<Minifigure> prMinifigure)
+        public static QueryPageModel ToQueryPageModel(this PagedResponse<Minifigure> prMinifigure)
         {
             return new QueryPageModel()
             {
@@ -16,7 +16,7 @@ namespace brickey_maui
             };
         }
 
-        internal static List<QueryElement> ToQueryElement(this List<Minifigure> mfs)
+        public static List<QueryElement> ToQueryElement(this List<Minifigure> mfs)
         {
             var result = new List<QueryElement>();
             foreach (Minifigure mf in mfs)
@@ -32,7 +32,7 @@ namespace brickey_maui
             return result;
         }
 
-        internal static QueryPageModel ToQueryPageModel(this PagedResponse<Part> prPart)
+        public static QueryPageModel ToQueryPageModel(this PagedResponse<Part> prPart)
         {
             return new QueryPageModel()
             {
@@ -43,7 +43,7 @@ namespace brickey_maui
             };
         }
 
-        internal static List<QueryElement> ToQueryElement(this List<Part> parts)
+        public static List<QueryElement> ToQueryElement(this List<Part> parts)
         {
             var result = new List<QueryElement>();
             foreach (Part p in parts)
@@ -60,7 +60,7 @@ namespace brickey_maui
         }
 
 
-        internal static QueryPageModel ToQueryPageModel(this PagedResponse<Set> prSets)
+        public static QueryPageModel ToQueryPageModel(this PagedResponse<Set> prSets)
         {
             return new QueryPageModel()
             {
@@ -71,7 +71,7 @@ namespace brickey_maui
             };
         }
 
-        internal static List<QueryElement> ToQueryElement(this List<Set> sets)
+        public static List<QueryElement> ToQueryElement(this List<Set> sets)
         {
             var result = new List<QueryElement>();
             foreach (Set s in sets)
