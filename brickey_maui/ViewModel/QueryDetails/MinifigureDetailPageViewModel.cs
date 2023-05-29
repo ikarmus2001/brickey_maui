@@ -20,10 +20,7 @@ namespace brickey_maui.ViewModel.QueryDetails
 
         PagedResponse<PartOfSet> pagedParts;
 
-        private MinifigureDetailPageViewModel()
-        {
-            
-        }
+        private MinifigureDetailPageViewModel() {  }
 
         public static async Task<MinifigureDetailPageViewModel> Build(Minifigure mf)
         {

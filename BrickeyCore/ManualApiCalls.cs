@@ -102,9 +102,9 @@ namespace BrickeyCore
                     PropertyNameCaseInsensitive = true
                 });
             }
-            catch (JsonException)
+            catch (JsonException e)
             {
-
+                throw;
             }
             return minifiguresResponse ?? throw new HttpRequestException("");
         }
@@ -143,10 +143,18 @@ namespace BrickeyCore
             string userRequest = $"lego/sets/{setId}/parts/";
 
             string content = await GetData(userRequest);
-            PagedResponse<PartOfSet>? response = JsonSerializer.Deserialize<PagedResponse<PartOfSet>>(content, new JsonSerializerOptions()
+            PagedResponse<PartOfSet>? response;
+            try
             {
-                PropertyNameCaseInsensitive = true
-            });
+                response = JsonSerializer.Deserialize<PagedResponse<PartOfSet>>(content, new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+            }
+            catch (JsonException)
+            {
+                throw;
+            }
             return response ?? throw new HttpRequestException();
         }
 

@@ -12,7 +12,7 @@ public partial class PartDetailPage : ContentPage, IQueryAttributable
 
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        var b = await SetDetailPageViewModel.Build((Set)query["item"]);
+        var b = await PartDetailPageViewModel.Build((Part)query["item"]);
         BindingContext = b;
     }
 }

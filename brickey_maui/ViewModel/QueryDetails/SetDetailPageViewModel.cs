@@ -16,18 +16,21 @@ namespace brickey_maui.ViewModel.QueryDetails
         //[ObservableProperty]
         //ObservableCollection<PartOfSet> partsUsed;
 
-        private SetDetailPageViewModel(Set set, List<PartOfSet> includedPartOfSet)
-        {
-            //mainImage = ImageSource.FromUri(new Uri(mf.imageURL));
-            //partsUsed = new ObservableCollection<PartOfSet>(x.results);
-        }
+        private PagedResponse<PartOfSet> pagedPartsOfSet;
+
+        private SetDetailPageViewModel() {  }
 
         public static async Task<SetDetailPageViewModel> Build(Set set)
         {
+            var vm = new SetDetailPageViewModel()
+            {
+                MainImage = ImageSource.FromUri(new Uri(set.imageURL ??
+                                                        "https://cdn-icons-png.flaticon.com/512/1548/1548682.png"))
+            };
 
-            PagedResponse<PartOfSet> x = await RebrickableApiWrapper.GetSetsParts(set.Id);
+            vm.pagedPartsOfSet = await RebrickableApiWrapper.GetSetsParts(set.Id);
 
-            return new SetDetailPageViewModel(set, x.results);
+            return vm;
         }
     }
 }
