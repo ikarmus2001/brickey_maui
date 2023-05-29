@@ -36,9 +36,10 @@ namespace brickey_maui.ViewModel.QueryDetails
             return x;
         }
 
-        public async Task PartClicked()
+        public async Task PartClicked(string partId)
         {
-            await Shell.Current.GoToAsync(nameof(PartDetailPage));
+            Part part = await RebrickableApiWrapper.GetPartDetails(partId);
+            await Shell.Current.GoToAsync(nameof(PartDetailPage), new Dictionary<string, object>() {{"item", part } });
         }
     }
 }

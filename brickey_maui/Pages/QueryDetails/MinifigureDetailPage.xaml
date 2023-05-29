@@ -5,6 +5,7 @@
              xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel.QueryDetails"
              x:DataType="viewmodel:MinifigureDetailPageViewModel"
              xmlns:model="clr-namespace:brickey_maui.Models"
+             Shell.NavBarIsVisible="False"
              xmlns:parts="clr-namespace:BrickeyCore.RebrickableModel;assembly=BrickeyCore"
              Title="MinifigureDetailPage">
 

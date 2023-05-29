@@ -15,20 +15,20 @@
 
         
         <!--Parts-->
-        <!--<HorizontalStackLayout>
-            <CollectionView ItemsSource="{Binding PartsUsed}">
+        <HorizontalStackLayout>
+            <CollectionView ItemsSource="{Binding }">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="parts:Part">
+                    <DataTemplate x:DataType="viewmodel:PartDetailPageViewModel">
                         <Grid >
-                            <Image Source="{Binding imageURL}" />
-                            <Label Text="{Binding name}" />
+                            <Image Source="{Binding PartDetails.imageURL}" />
+                            <Label Text="{Binding PartDetails.name}" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 
             </CollectionView>
             
-        </HorizontalStackLayout>-->
+        </HorizontalStackLayout>
 
         <!--Features in sets-->
         <!--<HorizontalStackLayout>
