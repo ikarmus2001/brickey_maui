@@ -56,7 +56,7 @@ namespace MAUIxUnitTest
                 throw;
             }
 
-            methodOutput.Should().
+            //methodOutput.Should().
         }
     }
 }
