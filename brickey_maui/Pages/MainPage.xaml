@@ -2,41 +2,39 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+            
              x:Class="brickey_maui.Pages.MainPage"
              x:DataType="viewmodel:MainPageViewModel"
-             Title="MainPage"
+             Title=""
+             Shell.NavBarIsVisible="False"
              Loaded="MainPageVM_Loaded">
+    
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource BrickeyKeyBlue}" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
 
     <Grid RowDefinitions="1.5*, auto, auto, 3*"
           ColumnDefinitions="*, 5*, *">
 
         <Image Grid.Column="1"  Grid.Row="0" 
                HorizontalOptions="Center"
-               Source="brickey_logo.png" />
+               Style="{StaticResource MainPageImage}" />
 
         <Grid Grid.Column="1" 
               Grid.Row="1" 
               ColumnDefinitions="*, *, *" >
 
-            <RadioButton Grid.Column="0"
+            <RadioButton x:Name="rbSet" Grid.Column="0"
                          Content="Set"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         FontSize="{OnPlatform iOS=12, Android=13, WinUI=18}"
                          IsChecked="{Binding SetRadioChecked}"/>
 
-            <RadioButton Grid.Column="1"
+            <RadioButton x:Name="rbMf"  Grid.Column="1"
                          Content="Minifigure"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         FontSize="{OnPlatform iOS=12, Android=13, WinUI=18}"
                          IsChecked="{Binding MinifiguresRadioChecked}"/>
 
             <RadioButton Grid.Column="2"
                          Content="Part"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         FontSize="{OnPlatform iOS=12, Android=13, WinUI=18}"
                          IsChecked="{Binding PartRadioChecked}"/>
 
         </Grid>
@@ -60,16 +58,17 @@
         <Grid Grid.Column="1" Grid.Row="3" ColumnDefinitions="*"  RowDefinitions="*, *, *" >
             <Button Grid.Row="0"
                     Text="My profile"
-                    Clicked="MyProfileBtn_Clicked"/>
+                    Style="{StaticResource MainPageButtons}"
+                    Clicked="MyProfileBtn_Clicked" />
 
             <Button Grid.Row="1"
                     Text="Collection"
-                    Clicked="CollectionBtn_Clicked"
-                    SemanticProperties.Hint="SemanticHint"/>
+                    Style="{StaticResource MainPageButtons}"
+                    Clicked="CollectionBtn_Clicked" />
 
-            <Button x:Name="SearchHistoryBtn"
-                    Grid.Row="2"
+            <Button Grid.Row="2"
                     Text="Search history"
+                    Style="{StaticResource MainPageButtons}"
                     Clicked="SearchHistoryBtn_Clicked"/>
 
         </Grid>

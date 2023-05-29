@@ -45,7 +45,6 @@ namespace brickey_maui.ViewModel
         /// <exception cref="System.Exception"></exception>
         public async void SearchBtn_Clicked()
         {
-
             QueryModel qm;
             QueryPageModel result;
             var navigationParam = new Dictionary<string, object>();
