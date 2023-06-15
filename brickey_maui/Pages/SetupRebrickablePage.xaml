@@ -4,7 +4,7 @@
              x:Class="brickey_maui.SetupRebrickablePage"
              Title="API Setup">
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsVisible="False"  />
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
     </Shell.BackButtonBehavior>
     
     <VerticalStackLayout Margin="15">

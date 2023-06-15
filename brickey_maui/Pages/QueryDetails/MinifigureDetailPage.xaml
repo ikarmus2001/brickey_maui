@@ -9,52 +9,92 @@
              xmlns:parts="clr-namespace:BrickeyCore.RebrickableModel;assembly=BrickeyCore"
              Title="MinifigureDetailPage">
 
-            
-    <ScrollView>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0"  Grid.ColumnSpan="3"
-                   Source="{Binding MainImage}" 
-                   Aspect="AspectFit" />
+        <Frame  
+            Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3"
+            WidthRequest="350"
+            HeightRequest="350"
+            CornerRadius="10"
+            HorizontalOptions="Center"
+            IsClippedToBounds="False"
+            Padding="0"
+            BorderColor="{AppThemeBinding Light={StaticResource BrickeyKeyBlue}, Dark=Gray}"
+            Margin="0,6,0,0">
+            <Image  Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3"
+                    Source="{Binding MainImage}"
+                    Aspect="AspectFill" />
+        </Frame>
+        <Label  
+            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+            Margin="5"
+            Text="{Binding Name}"
+            FontSize="28"/>
 
-            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Name}" 
-                   FontSize="28"/>
-            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Id}" />
+        <Label 
+            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
+            HorizontalOptions="End"
+            Opacity="80"
+            Margin="0, 0, 15, 0"
+            Text="{Binding Id}" />
 
-            <CollectionView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
-                            ItemsSource="{Binding PartsUsed}"
-                            SelectionMode="Single"
-                            SelectionChanged="SelectableItemsView_OnSelectionChanged" >
+        <ScrollView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" >
+            <CollectionView
+                ItemsSource="{Binding PartsUsed}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                ItemsLayout="HorizontalList"
+                SelectionMode="Single"
+                SelectionChanged="SelectableItemsView_OnSelectionChanged" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="parts:PartOfSet">
                         <Grid>
-                            <Image Source="{Binding part.imageURL}" /> 
-                            <Label Text="{Binding element_id}" />
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="180" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+                            <Border 
+                                HorizontalOptions="Center"
+                                StrokeShape="roundrectangle 20"
+                                StrokeThickness="5"
+                                BackgroundColor="White"
+                                Margin="3,0,3,0"
+                                Padding="12">
+                                
+                                <Image 
+                                    Grid.Row="0" 
+                                    Source="{Binding part.imageURL}" />
+                            </Border>
+
+                            <!--<Frame HeightRequest="140"
+                                   WidthRequest="140"
+                                   CornerRadius="20"
+                                   HorizontalOptions="Center"
+                                   IsClippedToBounds="True"
+                                   Padding="8"
+                                   BorderColor="{AppThemeBinding Light={StaticResource BrickeyKeyBlue}, Dark=Gray}"
+                                   Margin="3,0,3,0">
+                                <Image 
+                                    Grid.Row="0" 
+                                    Source="{Binding part.imageURL}" />
+                            </Frame>-->
+                            <Label Grid.Row="1" Text="{Binding element_id}" HorizontalOptions="Center" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </Grid>
-        
-        
-
-        <!--Features in sets-->
-        <!--<HorizontalStackLayout>
-            <Grid >
-                
-            </Grid>
-        </HorizontalStackLayout>-->
-    </ScrollView>
+        </ScrollView>
+    </Grid>
 </ContentPage>

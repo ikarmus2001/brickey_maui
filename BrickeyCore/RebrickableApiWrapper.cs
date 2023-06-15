@@ -23,7 +23,14 @@ namespace BrickeyCore
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("key", _apiKey);
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            _userToken = await ManualApiCalls.GetUserToken(username, password);
+            try
+            {
+                _userToken = await ManualApiCalls.GetUserToken(username, password);
+            }
+            catch (HttpRequestException)
+            {
+                return false;
+            }
             return true;
         }
 

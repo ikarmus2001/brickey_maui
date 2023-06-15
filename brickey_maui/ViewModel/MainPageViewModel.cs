@@ -16,27 +16,23 @@ namespace brickey_maui.ViewModel
     public partial class MainPageViewModel : ObservableObject
     {
         [ObservableProperty] private string searchbarText;
-
         [ObservableProperty] private bool setRadioChecked;
-
         [ObservableProperty] private bool minifiguresRadioChecked = true;
-
         [ObservableProperty] private bool partRadioChecked;
-
         
         public static async void MainPageVM_Loaded()
         {
             var username = await SecureStorage.Default.GetAsync(nameof(AppStoredDataModel.username));
             var password = await SecureStorage.Default.GetAsync(nameof(AppStoredDataModel.password));
             var apiKey = await SecureStorage.Default.GetAsync(nameof(AppStoredDataModel.apiKey));
-            if (username == "" || password == "" || username == null || password == null) 
+            if (username is not null and not "" && password is not null and not "" && apiKey is not null and not "")
             {
-                await Shell.Current.GoToAsync(nameof(SetupRebrickablePage));
+                bool loggedIn = await RebrickableApiWrapper.Setup(apiKey, username, password);
+                if (loggedIn)
+                    return;
             }
-            else
-            {
-                await RebrickableApiWrapper.Setup(apiKey, username, password);
-            }
+
+            await Shell.Current.GoToAsync(nameof(SetupRebrickablePage));
         }
 
         /// <summary>
@@ -45,6 +41,7 @@ namespace brickey_maui.ViewModel
         /// <exception cref="System.Exception"></exception>
         public async void SearchBtn_Clicked()
         {
+            if (SearchbarText is null) return;
             QueryModel qm;
             QueryPageModel result;
             var navigationParam = new Dictionary<string, object>();
@@ -109,8 +106,8 @@ namespace brickey_maui.ViewModel
 
                 navigationParam.Add(nameof(List<Set>), qm);
                 navigationParam.Add(nameof(data), data);
-
                 navigationParam.Add(nameof(QueryPageModel), result);
+
                 await Shell.Current.GoToAsync(nameof(SetQueryPage), navigationParam);
             }
             else throw new Exception();
@@ -144,6 +141,11 @@ namespace brickey_maui.ViewModel
         public static async Task CollectionBtn_Clicked()
         {
 
+        }
+
+        public async Task GridImageButton_Clicked()
+        {
+            await Shell.Current.GoToAsync(nameof(SetupRebrickablePage));
         }
     }
 }

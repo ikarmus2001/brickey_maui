@@ -45,5 +45,10 @@ public partial class MainPage : ContentPage
     {
         ((viewModel)BindingContext).SearchBtn_Clicked();
     }
+
+    private void GridImageButton_Clicked(object sender, EventArgs e)
+    {
+        ((viewModel)BindingContext).GridImageButton_Clicked();
+    }
 }
 

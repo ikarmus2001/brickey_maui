@@ -1,7 +1,5 @@
-using brickey_maui.Pages;
 using BrickeyCore;
 using CommunityToolkit.Maui.Alerts;
-using ToastDuration = CommunityToolkit.Maui.Core.ToastDuration;
 
 namespace brickey_maui;
 
@@ -14,21 +12,48 @@ public partial class SetupRebrickablePage : ContentPage
 
     private async void SaveBtn_Clicked(object sender, EventArgs e)
     {
+        if (!ValidateForm())
+            return;
+
         MauiProgram.SaveUserLoginData(UsernameEntry.Text, PasswordEntry.Text, ApiKeyEntry.Text);
-        if (await RebrickableApiWrapper.Setup(ApiKeyEntry.Text, UsernameEntry.Text, PasswordEntry.Text))
+        if (!await RebrickableApiWrapper.Setup(ApiKeyEntry.Text, UsernameEntry.Text, PasswordEntry.Text))
         {
-            await Shell.Current.GoToAsync("..");
+            ToastLoginFailed("Login failed, try again");
+            return;
         }
-        else
+        await Shell.Current.GoToAsync("..");
+    }
+
+    private async void ToastLoginFailed(string message)
+    {
+        var t = Toast.Make(message);
+        await t.Show();
+    }
+
+    private bool ValidateForm()
+    {
+#nullable enable
+        string?[] contents = { UsernameEntry.Text, PasswordEntry.Text, ApiKeyEntry.Text };
+        foreach (string? t in contents)
         {
-            var t = Toast.Make("Login failed, try again");
-            await t.Show();
+            if (t?.Trim() is null or "")
+            {
+                ToastLoginFailed("Form incomplete");
+                return false;
+            }
         }
+        return true;
+#nullable disable
     }
 
     private async void GetApiKey_Click(object sender, EventArgs e)
     {
         Uri uri = new Uri("https://rebrickable.com/login/?next=%2Fapi%2F");
         _ = await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+    }
+
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
     }
 }

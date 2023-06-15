@@ -30,7 +30,7 @@ namespace BrickeyCore
                 var _ = e.Message;
                 throw;
             }
-            return userTokenResponse == null ? throw new HttpRequestException("") : userTokenResponse.user_token;
+            return userTokenResponse?.user_token == null ? throw new HttpRequestException("") : userTokenResponse.user_token;
         }
 
         internal static async Task<UserProfile?> GetUserProfile()
