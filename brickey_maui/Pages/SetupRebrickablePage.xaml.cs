@@ -26,17 +26,9 @@ public partial class SetupRebrickablePage : ContentPage
         }
     }
 
-    private async void GoToSiteBtn_Clicked(object sender, EventArgs e)
+    private async void GetApiKey_Click(object sender, EventArgs e)
     {
-        try
-        {
-            Uri uri = new Uri("https://www.rebrickable.com");
-            _ = await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-        }
-        catch (Exception ex)
-        {
-            // An unexpected error occurred. No browser may be installed on the device.
-            throw ex;
-        }
+        Uri uri = new Uri("https://rebrickable.com/login/?next=%2Fapi%2F");
+        _ = await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
     }
 }

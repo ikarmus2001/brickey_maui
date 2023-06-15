@@ -66,8 +66,8 @@ namespace brickey_maui.ViewModel
 
                 navigationParam.Add(nameof(List<Minifigure>), qm);
                 navigationParam.Add(nameof(data), data);
-
                 navigationParam.Add(nameof(QueryPageModel), result);
+
                 await Shell.Current.GoToAsync(nameof(MinifigureQueryPage), navigationParam);
             }
             else if (PartRadioChecked)
@@ -87,8 +87,8 @@ namespace brickey_maui.ViewModel
 
                 navigationParam.Add(nameof(List<Part>), qm);
                 navigationParam.Add(nameof(data), data);
-
                 navigationParam.Add(nameof(QueryPageModel), result);
+
                 await Shell.Current.GoToAsync(nameof(PartQueryPage), navigationParam);
             }
             else if (SetRadioChecked)
@@ -123,11 +123,7 @@ namespace brickey_maui.ViewModel
                 {"search", searchbarText }
             };
 
-            return new QueryModel()
-            {
-                queryType = qtype,
-                parameters = p
-            };
+            return new QueryModel(qtype, p);
         }
 
         public static async void MyProfileBtn_Clicked()

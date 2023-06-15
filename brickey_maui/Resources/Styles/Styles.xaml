@@ -15,7 +15,7 @@
         <Setter Property="TextTransform" Value="Uppercase" />
         <Setter Property="AnchorX" Value="20" />
         <Setter Property="Margin" Value="4" />
-        <Setter Property="TextColor" Value="AntiqueWhite" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Tertiary}, Dark=AntiqueWhite}" />
         <Setter Property="BorderColor" Value="{StaticResource BrickeyKeyBlue}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="BorderWidth" Value="3" />

@@ -2,16 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="brickey_maui.SetupRebrickablePage"
-             Title="SetupRebrickablePage">
-    <VerticalStackLayout>
+             Title="API Setup">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"  />
+    </Shell.BackButtonBehavior>
+    
+    <VerticalStackLayout Margin="15">
         <Label 
             Text="To begin using app you have to be registered on Rebrickable and generate API Key"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
         <Button x:Name="GoToSiteBtn"
-                Text="Rebrickable API Key"
-                Clicked="GoToSiteBtn_Clicked"/>
+                Text="Get API Key"
+                Clicked="GetApiKey_Click"
+                Style="{StaticResource MainPageButtons}"/>
 
         <Entry 
             x:Name="ApiKeyEntry"
@@ -23,13 +28,14 @@
 
         <Entry 
             x:Name="PasswordEntry" 
-           Placeholder="Password"
-           IsPassword="True"/>
+            Placeholder="Password"
+            IsPassword="True"/>
 
         <Button 
             x:Name="SaveBtn"
-            Text="Save"
-            Clicked="SaveBtn_Clicked"/>
+            Text="Save and check"
+            Clicked="SaveBtn_Clicked"
+            Style="{StaticResource MainPageButtons}"/>
 
     </VerticalStackLayout>
 </ContentPage>

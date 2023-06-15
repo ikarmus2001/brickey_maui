@@ -15,7 +15,8 @@
     </ContentPage.Behaviors>
 
     <Grid RowDefinitions="1.5*, auto, auto, 3*"
-          ColumnDefinitions="*, 5*, *">
+          ColumnDefinitions="*, 5*, *"
+          Margin="15, 0, 15, 5">
 
         <Image Grid.Column="1"  Grid.Row="0" 
                HorizontalOptions="Center"

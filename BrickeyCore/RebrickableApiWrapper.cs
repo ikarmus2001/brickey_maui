@@ -7,13 +7,14 @@ namespace BrickeyCore
     public abstract class RebrickableApiWrapper
     {
         private static string baseApiUrl = "https://rebrickable.com/api/v3/";
-        internal static HttpClient _httpClient;
         private static string _apiKey;
-        internal static string userToken;
+        internal static HttpClient _httpClient;
+        internal static string _userToken;
 
+        
         public static async Task<bool> Setup(string rebrickableApiKey, string username, string password)
         {
-            RebrickableApiWrapper._apiKey = rebrickableApiKey;
+            _apiKey = rebrickableApiKey;
 
             _httpClient = new HttpClient()
             {
@@ -22,7 +23,7 @@ namespace BrickeyCore
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("key", _apiKey);
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            userToken = await ManualApiCalls.GetUserToken(username, password);
+            _userToken = await ManualApiCalls.GetUserToken(username, password);
             return true;
         }
 

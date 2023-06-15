@@ -19,7 +19,7 @@ namespace brickey_maui.ViewModel.QueryDetails
             {
                 MainImage = part.imageURL
             };
-            vm.partDetails = await RebrickableApiWrapper.GetPartDetails(part.Id);
+            vm.PartDetails = await RebrickableApiWrapper.GetPartDetails(part.Id);
             return vm;
         }
     }

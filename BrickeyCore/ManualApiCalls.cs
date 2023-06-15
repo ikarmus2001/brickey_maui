@@ -35,7 +35,7 @@ namespace BrickeyCore
 
         internal static async Task<UserProfile?> GetUserProfile()
         {
-            var userRequest = $"users/{RebrickableApiWrapper.userToken}/profile/";
+            var userRequest = $"users/{RebrickableApiWrapper._userToken}/profile/";
             string content = await GetData(userRequest);
 
             return JsonSerializer.Deserialize<UserProfile>(content);
@@ -104,7 +104,7 @@ namespace BrickeyCore
             }
             catch (JsonException e)
             {
-                throw;
+                throw e;
             }
             return minifiguresResponse ?? throw new HttpRequestException("");
         }

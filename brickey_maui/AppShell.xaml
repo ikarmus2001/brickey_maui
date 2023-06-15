@@ -8,7 +8,7 @@
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title=""
+        Title="Cokolwiek"
         ContentTemplate="{DataTemplate pages:MainPage}" />
 
 </Shell>
