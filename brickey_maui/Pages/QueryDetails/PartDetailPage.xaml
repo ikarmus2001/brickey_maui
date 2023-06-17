@@ -5,23 +5,54 @@
              xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel.QueryDetails"
              x:DataType="viewmodel:PartDetailPageViewModel"
              xmlns:model="clr-namespace:brickey_maui.Models"
-             xmlns:parts="clr-namespace:BrickeyCore.RebrickableModel;assembly=BrickeyCore"
-             Title="PartDetailPage">
+             xmlns:rebrickableModel="clr-namespace:BrickeyCore.RebrickableModel;assembly=BrickeyCore"
+             Title="PartDetailPage"
+             BindingContext="{Binding}">
 
-    <VerticalStackLayout>
-        <Image x:Name="mfImage"
-               Source="{Binding MainImage}"/>
-        <Label Text="{Binding PartDetails.name}" />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <ScrollView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Frame  
+            Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3"
+            MinimumWidthRequest="350"
+            MinimumHeightRequest="350"
+            MaximumWidthRequest="500"
+            MaximumHeightRequest="500"
+            CornerRadius="10"
+            BackgroundColor="White"
+            HorizontalOptions="Center"
+            IsClippedToBounds="True"
+            Padding="0"
+            BorderColor="{AppThemeBinding Light={StaticResource BrickeyKeyBlue}, Dark=Gray}"
+            Margin="0,6,0,0">
+            <Image  Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3"
+                    Source="{Binding MainImage}" />
+        </Frame>
+        <Label
+            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
+            Text="{Binding PartDetails.name}" />
+
+        <ScrollView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
             <CollectionView
-                ItemsSource="{Binding}"
+                ItemsSource="{Binding FeaturingSets}"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
                 ItemsLayout="HorizontalList"
-                SelectionMode="Single" >
+                SelectionMode="Single" 
+                SelectionChanged="SelectableItemsView_OnSelectionChanged">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="viewmodel:PartDetailPageViewModel">
+                    <DataTemplate x:DataType="rebrickableModel:Set">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="180" />
@@ -29,22 +60,23 @@
                             </Grid.RowDefinitions>
                             <Border 
                                 HorizontalOptions="Center"
-                                StrokeShape="roundrectangle 20"
+                                StrokeShape="RoundRectangle 20"
                                 StrokeThickness="5"
                                 BackgroundColor="White"
                                 Margin="3,0,3,0"
                                 Padding="12">
-
                                 <Image 
                                     Grid.Row="0" 
-                                    Source="{Binding part.imageURL}" />
+                                    Source="{Binding imageURL}" />
                             </Border>
-                            <Label Grid.Row="1" Text="{Binding element_id}" HorizontalOptions="Center" />
+                            <Label Grid.Row="1" 
+                                   Text="{Binding name}" 
+                                   HorizontalOptions="Center" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </ScrollView>
-    </VerticalStackLayout>
+    </Grid>
     
 </ContentPage>

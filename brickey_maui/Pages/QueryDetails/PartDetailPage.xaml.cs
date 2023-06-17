@@ -15,4 +15,10 @@ public partial class PartDetailPage : ContentPage, IQueryAttributable
         var b = await PartDetailPageViewModel.Build((Part)query["item"]);
         BindingContext = b;
     }
+
+    private async void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var x = (Set)e.CurrentSelection.FirstOrDefault();
+        await ((PartDetailPageViewModel)BindingContext).SetClicked(x.Id);
+    }
 }

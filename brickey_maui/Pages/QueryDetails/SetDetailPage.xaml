@@ -5,36 +5,79 @@
              xmlns:viewmodel="clr-namespace:brickey_maui.ViewModel.QueryDetails"
              x:DataType="viewmodel:SetDetailPageViewModel"
              xmlns:model="clr-namespace:brickey_maui.Models"
-             xmlns:parts="clr-namespace:BrickeyCore.RebrickableModel;assembly=BrickeyCore"
+             xmlns:rebrickableModel="clr-namespace:BrickeyCore.RebrickableModel;assembly=BrickeyCore"
              Title="SetDetailPage">
 
-            
-    <VerticalStackLayout>
-        <Image x:Name="mfImage"
-               Source="{Binding MainImage}"/>
 
-        
-        <!--Parts-->
-        <!--<HorizontalStackLayout>
-            <CollectionView ItemsSource="{Binding PartsUsed}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Frame  
+            Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3"
+            MinimumWidthRequest="350"
+            MinimumHeightRequest="350"
+            MaximumWidthRequest="500"
+            MaximumHeightRequest="500"
+            CornerRadius="10"
+            BackgroundColor="White"
+            HorizontalOptions="Center"
+            IsClippedToBounds="True"
+            Padding="0"
+            BorderColor="{AppThemeBinding Light={StaticResource BrickeyKeyBlue}, Dark=Gray}"
+            Margin="0,6,0,0">
+            <Image  Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3"
+                    Source="{Binding MainImage}" />
+        </Frame>
+
+        <Label Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="3"
+               Text="{Binding Path=Name}" />
+
+        <Label />
+
+        <ScrollView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" >
+            <CollectionView
+                ItemsSource="{Binding PagedPartsOfSet}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                ItemsLayout="HorizontalList"
+                SelectionMode="Single" >
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="parts:Part">
-                        <Grid >
-                            <Image Source="{Binding imageURL}" />
-                            <Label Text="{Binding name}" />
+                    <DataTemplate x:DataType="rebrickableModel:Part">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="180" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+                            <Border 
+                                HorizontalOptions="Center"
+                                StrokeShape="RoundRectangle 20"
+                                StrokeThickness="5"
+                                BackgroundColor="White"
+                                Margin="3,0,3,0"
+                                Padding="12">
+
+                                <Image 
+                                    Grid.Row="0" 
+                                    Source="{Binding imageURL}" />
+                            </Border>
+
+                            <Label Grid.Row="1" Text="{Binding Id}" HorizontalOptions="Center" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                
             </CollectionView>
-            
-        </HorizontalStackLayout>-->
+        </ScrollView>
 
-        <!--Features in sets-->
-        <!--<HorizontalStackLayout>
-            <Grid >
-                
-            </Grid>
-        </HorizontalStackLayout>-->
-    </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>

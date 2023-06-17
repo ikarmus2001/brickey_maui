@@ -138,23 +138,16 @@ namespace BrickeyCore
             return setsResponse;
         }
 
-        public static async Task<PagedResponse<PartOfSet>> GetSetsParts(string setId)
+        internal static async Task<PagedResponse<PartOfSet>> GetSetsParts(string setId)
         {
             string userRequest = $"lego/sets/{setId}/parts/";
 
             string content = await GetData(userRequest);
             PagedResponse<PartOfSet>? response;
-            try
+            response = JsonSerializer.Deserialize<PagedResponse<PartOfSet>>(content, new JsonSerializerOptions()
             {
-                response = JsonSerializer.Deserialize<PagedResponse<PartOfSet>>(content, new JsonSerializerOptions()
-                {
-                    PropertyNameCaseInsensitive = true
-                });
-            }
-            catch (JsonException)
-            {
-                throw;
-            }
+                PropertyNameCaseInsensitive = true
+            });
             return response ?? throw new HttpRequestException();
         }
 

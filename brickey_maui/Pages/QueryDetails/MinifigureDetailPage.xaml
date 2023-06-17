@@ -7,50 +7,46 @@
              xmlns:model="clr-namespace:brickey_maui.Models"
              Shell.NavBarIsVisible="False"
              xmlns:parts="clr-namespace:BrickeyCore.RebrickableModel;assembly=BrickeyCore"
-             Title="MinifigureDetailPage">
+             Title="">
 
-    <Grid>
+    <Grid Margin="2">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="15*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="7*" />
         </Grid.RowDefinitions>
 
-        <Frame  
-            Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3"
-            WidthRequest="350"
-            HeightRequest="350"
-            CornerRadius="10"
+        <Border 
             HorizontalOptions="Center"
-            IsClippedToBounds="False"
-            Padding="0"
-            BorderColor="{AppThemeBinding Light={StaticResource BrickeyKeyBlue}, Dark=Gray}"
-            Margin="0,6,0,0">
-            <Image  Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3"
-                    Source="{Binding MainImage}"
-                    Aspect="AspectFill" />
-        </Frame>
+            StrokeShape="RoundRectangle 20"
+            StrokeThickness="5"
+            BackgroundColor="White"
+            Margin="3,0,3,0"
+            Padding="12">
+            <Image  
+                HorizontalOptions="Center"
+                Source="{Binding MainImage}" 
+                Aspect="AspectFit"/>
+        </Border>
         <Label  
-            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+            Grid.Row="1" Grid.Column="0"
             Margin="5"
             Text="{Binding Name}"
             FontSize="28"/>
 
         <Label 
-            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
+            Grid.Row="2"
             HorizontalOptions="End"
             Opacity="80"
             Margin="0, 0, 15, 0"
             Text="{Binding Id}" />
 
-        <ScrollView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" >
+        <ScrollView Grid.Row="3" Grid.Column="0" >
             <CollectionView
                 ItemsSource="{Binding PartsUsed}"
                 VerticalOptions="FillAndExpand"
@@ -62,35 +58,23 @@
                     <DataTemplate x:DataType="parts:PartOfSet">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="180" />
-                                <RowDefinition Height="20" />
+                                <RowDefinition Height="4*" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Border 
                                 HorizontalOptions="Center"
-                                StrokeShape="roundrectangle 20"
+                                StrokeShape="RoundRectangle 20"
                                 StrokeThickness="5"
                                 BackgroundColor="White"
                                 Margin="3,0,3,0"
                                 Padding="12">
-                                
+
                                 <Image 
-                                    Grid.Row="0" 
                                     Source="{Binding part.imageURL}" />
                             </Border>
-
-                            <!--<Frame HeightRequest="140"
-                                   WidthRequest="140"
-                                   CornerRadius="20"
-                                   HorizontalOptions="Center"
-                                   IsClippedToBounds="True"
-                                   Padding="8"
-                                   BorderColor="{AppThemeBinding Light={StaticResource BrickeyKeyBlue}, Dark=Gray}"
-                                   Margin="3,0,3,0">
-                                <Image 
-                                    Grid.Row="0" 
-                                    Source="{Binding part.imageURL}" />
-                            </Frame>-->
-                            <Label Grid.Row="1" Text="{Binding element_id}" HorizontalOptions="Center" />
+                            <Label Grid.Row="1" 
+                                   Text="{Binding element_id}" 
+                                   HorizontalOptions="Center" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

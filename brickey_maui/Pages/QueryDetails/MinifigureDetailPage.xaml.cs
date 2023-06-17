@@ -19,6 +19,6 @@ public partial class MinifigureDetailPage : ContentPage, IQueryAttributable
     private async void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var x = (PartOfSet)e.CurrentSelection.FirstOrDefault();
-        await ((MinifigureDetailPageViewModel)BindingContext).PartClicked(x.element_id);
+        await ((MinifigureDetailPageViewModel)BindingContext).PartClicked(x.part.Id);
     }
 }

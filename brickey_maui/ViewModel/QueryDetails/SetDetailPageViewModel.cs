@@ -1,7 +1,6 @@
 ﻿using BrickeyCore;
 using BrickeyCore.RebrickableModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
 
 namespace brickey_maui.ViewModel.QueryDetails
 {
@@ -10,12 +9,11 @@ namespace brickey_maui.ViewModel.QueryDetails
         [ObservableProperty]
         ImageSource mainImage;
 
-        //[ObservableProperty]
-        //ObservableCollection<Set> featuringSets;
+        [ObservableProperty] private string name;
 
-        //[ObservableProperty]
-        //ObservableCollection<PartOfSet> partsUsed;
+        [ObservableProperty] private string id;
 
+        [ObservableProperty]
         private PagedResponse<PartOfSet> pagedPartsOfSet;
 
         private SetDetailPageViewModel() {  }
@@ -24,11 +22,13 @@ namespace brickey_maui.ViewModel.QueryDetails
         {
             var vm = new SetDetailPageViewModel()
             {
+                Name = set.name,
+                Id = set.Id,
                 MainImage = ImageSource.FromUri(new Uri(set.imageURL ??
                                                         "https://cdn-icons-png.flaticon.com/512/1548/1548682.png"))
             };
 
-            vm.pagedPartsOfSet = await RebrickableApiWrapper.GetSetsParts(set.Id);
+            vm.PagedPartsOfSet = await RebrickableApiWrapper.GetSetsParts(set.Id);
 
             return vm;
         }

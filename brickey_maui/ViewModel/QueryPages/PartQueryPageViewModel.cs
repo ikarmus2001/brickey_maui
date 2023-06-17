@@ -1,10 +1,8 @@
 ﻿using brickey_maui.Models;
-using brickey_maui.Pages;
+using brickey_maui.Pages.QueryDetails;
 using BrickeyCore.RebrickableModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
-using brickey_maui.Pages.QueryDetails;
-using static BrickeyCore.QueryModel;
 
 namespace brickey_maui.ViewModel.QueryPages
 {
